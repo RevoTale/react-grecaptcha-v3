@@ -1,2 +1,1 @@
-# react-google-recaptcha-v3
-Performance-friendly integration of Google reCAPTCHA v3 into React. Keep your PageSpeed Insights high.
+# Google Recaptcha V3 for React.js based application
