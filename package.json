@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "!!!Usually, this is a link to the GitHub repository ending with .git !!!",
+    "url": "https://github.com/RustedLabs/react-google-recaptcha-v3.git",
     "directory": "packages/my-awesome-package-example"
   },
   "scripts": {
@@ -57,13 +57,17 @@
     ]
   },
   "keywords": [
-    "!!!add few keywords here!!!"
+    "react",
+    "google",
+    "recaptcha",
+    "v3",
+    "nextjs"
   ],
-  "author": "",
+  "author": "Rusted Love",
   "bugs": {
-    "url": "!!!Usually, this is a link to the GitHub issues.!!!"
+    "url": "https://github.com/RustedLabs/react-google-recaptcha-v3/issues"
   },
-  "homepage": "!!!Usually, this is a link to the GitHub readme.!!!",
+  "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
   "peerDependencies": {
   },
   "dependencies": {
