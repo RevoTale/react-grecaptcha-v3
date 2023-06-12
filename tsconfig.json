@@ -17,6 +17,7 @@
     "listEmittedFiles": true,
     "noEmit": false,
     "allowJs": false,
+    "declarationDir": "dist/typings",
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "alwaysStrict": true,
