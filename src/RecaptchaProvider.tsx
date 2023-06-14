@@ -1,7 +1,10 @@
-import {createContext, FunctionComponent, ReactNode, useEffect} from "react";
+import {createContext, FunctionComponent, ReactNode, useEffect, useRef} from "react";
 import {maybeInjectScript, maybeRemoveScript} from "./utils";
-
-const Context = createContext<string | null>(null)
+type ExecuteRecaptcha =  (action: string) => Promise<string>
+type ContextType = {
+    useExecuteReCaptcha: () =>ExecuteRecaptcha
+}
+export const Context = createContext<ContextType|null>(null)
 export type Props = {
     siteKey: string | null
     children: ReactNode
@@ -22,7 +25,41 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
             maybeInjectScript(siteKey, reCaptchaScriptId)
         }
     }, [siteKey])
-    return <Context.Provider value={siteKey}>
+    const queueRef = useRef<{
+        action:string
+        onComplete:(token:string)=>void
+        onError:(reason:unknown)=>void
+    }[]>([])
+
+    const handleNextInQueue = () => {
+        queueRef.current.forEach(({action, onComplete}) => {
+            const {grecaptcha} = window
+            if (grecaptcha && siteKey) {
+                grecaptcha.ready(function () {
+                    grecaptcha.execute(siteKey, {action: action}).then(function (token) {
+                        onComplete(token)
+                    });
+                });
+            }
+
+        })
+    }
+    const executeRecaptcha =async (action: string):Promise<string> => {
+        return new Promise((resolve, reject)=>{
+            queueRef.current.push({
+                action,
+                onComplete:resolve,
+                onError:reject
+            })
+            handleNextInQueue()
+        })
+
+    }
+
+
+    return <Context.Provider value={{
+        useExecuteReCaptcha: ():ExecuteRecaptcha => executeRecaptcha
+    }}>
 
         {children}
     </Context.Provider>
