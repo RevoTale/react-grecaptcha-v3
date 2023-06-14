@@ -1,7 +1,9 @@
 export const createScript = (siteKey: string, scriptId: string): HTMLScriptElement => {
     const el = document.createElement('script')
-    el.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
     el.id = scriptId
+    el.async = true
+    el.defer = true
+    el.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
     return el
 }
 
