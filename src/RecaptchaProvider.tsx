@@ -10,12 +10,14 @@ export type Props = {
     children: ReactNode
     reCaptchaScriptId?: string
     useRecaptchaNet?:boolean
+    enterprise?:boolean
 }
 const RecaptchaProvider: FunctionComponent<Props> = ({
                                                          siteKey,
                                                          children,
                                                          reCaptchaScriptId = null,
-                                                         useRecaptchaNet=false
+                                                         useRecaptchaNet=false,
+                                                         enterprise=false
                                                      }) => {
     useEffect(() => {
         if (reCaptchaScriptId === null) {
@@ -27,7 +29,8 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
             maybeInjectScript({
                 scriptId:reCaptchaScriptId,
                 useRecaptchaNet,
-                siteKey
+                siteKey,
+                enterprise
             })
         }
     }, [siteKey])
@@ -42,9 +45,11 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
             const {grecaptcha} = window
             if (grecaptcha && siteKey) {
                 grecaptcha.ready(function () {
-                    grecaptcha.execute(siteKey, {action: action}).then(function (token) {
-                        onComplete(token)
-                    });
+                    if (grecaptcha.execute) {
+                        grecaptcha.execute(siteKey, {action: action}).then(function (token) {
+                            onComplete(token)
+                        });
+                    }
                 });
             }
 

@@ -3,5 +3,5 @@ export type GlobalRecaptchaExecuteProps = {
 }
 export type GlobalReCaptcha = {
     ready:(callback:()=>void)=>void
-    execute:(siteKey:string,props:GlobalRecaptchaExecuteProps)=>Promise<string>
+    execute?:(siteKey:string,props:GlobalRecaptchaExecuteProps)=>Promise<string>
 }
