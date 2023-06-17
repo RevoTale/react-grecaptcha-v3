@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RustedLabs/react-google-recaptcha-v3.git",
+    "url": "git+https://github.com/RustedLabs/react-google-recaptcha-v3.git",
     "directory": "packages/my-awesome-package-example"
   },
   "scripts": {
@@ -112,5 +112,9 @@
     "directory": "dist",
     "access": "public"
   },
-  "type": "module"
+  "type": "module",
+  "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score.",
+  "directories": {
+    "test": "tests"
+  }
 }
