@@ -1,37 +1,49 @@
 import {createContext, FunctionComponent, ReactNode, useEffect, useRef} from "react";
-import {maybeInjectScript, maybeRemoveScript} from "./utils";
+import {getScriptSrc, maybeInjectScript, maybeRemoveScript} from "./utils";
 type ExecuteRecaptcha =  (action: string) => Promise<string>
 type ContextType = {
     useExecuteReCaptcha: () =>ExecuteRecaptcha
 }
 export const Context = createContext<ContextType|null>(null)
+export type ScriptProps =  {
+    nonce?: string;
+    defer?: boolean;
+    async?: boolean;
+    appendTo?: 'head' | 'body';
+    id?: string;
+}
 export type Props = {
     siteKey: string | null
     children: ReactNode
-    reCaptchaScriptId?: string
     useRecaptchaNet?:boolean
     enterprise?:boolean
+    scriptProps?: ScriptProps
 }
 const RecaptchaProvider: FunctionComponent<Props> = ({
                                                          siteKey,
                                                          children,
-                                                         reCaptchaScriptId = null,
+                                                         scriptProps = {},
                                                          useRecaptchaNet=false,
-                                                         enterprise=false
+                                                         enterprise=false,
                                                      }) => {
     useEffect(() => {
-        if (reCaptchaScriptId === null) {
-            reCaptchaScriptId = 'rusted_labs_react_recaptcha_v3'
-        }
+        const reCaptchaScriptId = scriptProps.id||'rusted_labs_react_recaptcha_v3'
         if (null === siteKey) {
             maybeRemoveScript(reCaptchaScriptId)
         } else {
             maybeInjectScript({
-                scriptId:reCaptchaScriptId,
-                useRecaptchaNet,
-                siteKey,
-                enterprise
+                src:getScriptSrc({
+                    enterprise,useRecaptchaNet,siteKey
+                }),
+                appendTo:scriptProps.appendTo || 'head',
+                id:reCaptchaScriptId,
+                async:scriptProps.async || true,
+                defer:scriptProps.defer || true,
+                nonce:scriptProps.nonce
             })
+        }
+        return ()=>{
+            maybeRemoveScript(reCaptchaScriptId)
         }
     }, [siteKey])
     const queueRef = useRef<{

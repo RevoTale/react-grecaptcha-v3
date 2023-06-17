@@ -1,8 +1,8 @@
 
-export type ScriptProps = {
-    siteKey: string, scriptId: string,useRecaptchaNet:boolean,enterprise:boolean
-}
-const getUrl = ({enterprise,useRecaptchaNet,siteKey}:ScriptProps):string=>{
+export type ReCaptchaProps = Readonly<{
+    siteKey: string, useRecaptchaNet:boolean,enterprise:boolean
+}>
+export const getScriptSrc = ({enterprise,useRecaptchaNet,siteKey}:ReCaptchaProps):string=>{
     const hostname = useRecaptchaNet ? "recaptcha.net" : "www.google.com";
     if (enterprise) {
         return `https://${hostname}/recaptcha/enterprise.js?render=explicit`;
@@ -12,8 +12,7 @@ const getUrl = ({enterprise,useRecaptchaNet,siteKey}:ScriptProps):string=>{
 export const prepareGlobalObject =()=>{
     if(typeof window.grecaptcha === 'undefined') {
         window.grecaptcha = {
-            execute:()=>{
-            },
+        
             ready(cb){
                 if(typeof window.grecaptcha === 'undefined') {
                     // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
@@ -31,17 +30,22 @@ export const prepareGlobalObject =()=>{
         };
     }
 }
-export const createScript = (props:ScriptProps): HTMLScriptElement => {
+export type CreatScriptProps = Readonly<{
+    id:string
+    async:boolean
+    defer:boolean
+    src:string
+    nonce?:string
+}>
+export const createScript = (props:CreatScriptProps): HTMLScriptElement => {
     const el = document.createElement('script')
-    el.id = props.scriptId
-    el.async = true
-    el.defer = true
-    el.src = getUrl(props)
+    Object.assign(el,props)
     return el
 }
 
-export const maybeInjectScript = (props:ScriptProps): HTMLScriptElement => {
-    const el = document.querySelector(`script[id=${props.scriptId}]`)
+export type InjectScriptProps = CreatScriptProps&{ appendTo: 'head' | 'body';}
+export const maybeInjectScript = (props:InjectScriptProps): HTMLScriptElement => {
+    const el = document.querySelector(`script[id=${props.id}]`)
     if (null === el) {
         return document.head.appendChild(createScript(props))
     }

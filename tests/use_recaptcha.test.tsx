@@ -1,5 +1,4 @@
 import {FunctionComponent, ReactNode} from "react";
-import * as React from 'react';
 import RecaptchaProvider from "../src/RecaptchaProvider";
 import  useExecuteReCaptcha  from '../src/useExecuteReCaptcha';
 import { renderHook } from '@testing-library/react-hooks';

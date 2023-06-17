@@ -1,4 +1,3 @@
-import * as React from 'react';
 import RecaptchaProvider from '../src/RecaptchaProvider';
 import { render, waitFor } from '@testing-library/react';
 
@@ -120,7 +119,7 @@ describe('<RecaptchaProvider />', () => {
     describe('when using enterprise version', () => {
         it('accept an enterprise prop to load recaptcha from enterprise source', () => {
             render(
-                <RecaptchaProvider siteKey="TESTKEY" useEnterprise>
+                <RecaptchaProvider siteKey="TESTKEY" enterprise>
                     <div />
                 </RecaptchaProvider>
             );
