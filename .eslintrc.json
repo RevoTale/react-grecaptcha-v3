@@ -32,7 +32,12 @@
         "allow": ["warn", "error"]
       }
     ],
-    "prefer-arrow/prefer-arrow-functions": "error",
+    "prefer-arrow-callback": [
+      "error",
+      {
+        "allowNamedFunctions": true
+      }
+    ],
     "es5/no-typeof-symbol": "error",
     "no-unused-vars": [
       "warn",
