@@ -1,4 +1,5 @@
 {
   "preset": "ts-jest",
-  "testMatch": ["**/tests/?(*.)(spec|test).(ts|jsx)?(x)"]
+  "testMatch": ["**/tests/?(*.)(spec|test).(ts|jsx)?(x)"],
+  "testEnvironment": "jsdom"
 }

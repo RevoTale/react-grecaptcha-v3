@@ -12,6 +12,7 @@ export type ScriptProps =  {
     appendTo?: 'head' | 'body';
     id?: string;
 }
+export const defaultScriptId = 'rusted_labs_react_recaptcha_v3'
 export type Props = {
     siteKey: string | null
     children: ReactNode
@@ -27,7 +28,7 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
                                                          enterprise=false,
                                                      }) => {
     useEffect(() => {
-        const reCaptchaScriptId = scriptProps.id||'rusted_labs_react_recaptcha_v3'
+        const reCaptchaScriptId = scriptProps.id||defaultScriptId
         if (null === siteKey) {
             maybeRemoveScript(reCaptchaScriptId)
         } else {
