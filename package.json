@@ -82,7 +82,8 @@
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
   "peerDependencies": {},
   "dependencies": {
-    "@bladl/react-hooks": "^1.5.2"
+    "@bladl/react-hooks": "^1.5.2",
+    "react-dom": "^18.2.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
