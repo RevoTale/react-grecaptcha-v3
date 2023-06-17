@@ -12,7 +12,7 @@ export const getScriptSrc = ({
 }: ReCaptchaProps): string => {
   const hostname = useRecaptchaNet ? 'recaptcha.net' : 'www.google.com';
   if (enterprise) {
-    return `https://${hostname}/recaptcha/enterprise.js?render=explicit`;
+    return `https://${hostname}/recaptcha/enterprise.js?render=${siteKey}`;
   }
   return `https://${hostname}/recaptcha/api.js?render=${siteKey}`;
 };
@@ -50,17 +50,13 @@ export type InjectScriptProps = CreatScriptProps & {
 export const maybeInjectScript = ({
   appendTo,
   ...scriptProps
-}: InjectScriptProps): HTMLScriptElement => {
-  const el = document.querySelector(`script[id=${scriptProps.id}]`);
+}: InjectScriptProps): void => {
+  let el = document.querySelector(`script[id=${scriptProps.id}]`);
   if (el === null) {
-    const el = document.createElement('script') as HTMLScriptElement;
-    Object.assign(el, scriptProps);
-    (appendTo === 'head' ? document.head : document.body).appendChild(el);
-    return el;
+    el = document.createElement('script') as HTMLScriptElement;
   }
   Object.assign(el, scriptProps);
-
-  return el as HTMLScriptElement;
+  (appendTo === 'head' ? document.head : document.body).appendChild(el);
 };
 export const maybeRemoveScript = (scriptId: string): void => {
   const el = document.querySelector(`script[id=${scriptId}]`);

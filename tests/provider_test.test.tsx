@@ -96,7 +96,10 @@ describe('<RecaptchaProvider />', () => {
 
   it('reloads script on scriptProps changes', async () => {
     const { rerender } = render(
-      <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ async: false }}>
+      <RecaptchaProvider
+        siteKey="TESTKEY"
+        scriptProps={{ async: false, nonce: 'prev_nonce' }}
+      >
         <div />
       </RecaptchaProvider>
     );
@@ -106,14 +109,23 @@ describe('<RecaptchaProvider />', () => {
     expect(scriptElm).not.toBeNull();
 
     rerender(
-      <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ async: true }}>
+      <RecaptchaProvider
+        siteKey="TESTKEY"
+        scriptProps={{ async: true, nonce: 'second_nonce' }}
+      >
         <div />
       </RecaptchaProvider>
     );
+    expect((document.querySelector(scriptId) as HTMLScriptElement).nonce).toBe(
+      'second_nonce'
+    );
 
-    expect(scriptElm).not.toBe(document.querySelector(scriptId));
-    expect((scriptElm as HTMLScriptElement).async).toBe(true);
-    expect((scriptElm as HTMLScriptElement).defer).toBe(true);
+    expect((document.querySelector(scriptId) as HTMLScriptElement).async).toBe(
+      true
+    );
+    expect((document.querySelector(scriptId) as HTMLScriptElement).defer).toBe(
+      true
+    );
   });
 
   describe('when using enterprise version', () => {
@@ -138,7 +150,7 @@ describe('<RecaptchaProvider />', () => {
         </RecaptchaProvider>
       );
 
-      const scriptElm = document.getElementById(scriptId);
+      const scriptElm = document.getElementById(defaultScriptId);
 
       expect(scriptElm?.getAttribute('src')).toEqual(
         'https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY'

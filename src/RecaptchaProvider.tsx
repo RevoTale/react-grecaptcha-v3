@@ -50,10 +50,10 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
           useRecaptchaNet,
           siteKey,
         }),
-        appendTo: scriptProps.appendTo || 'head',
+        appendTo: scriptProps.appendTo ?? 'head',
         id: reCaptchaScriptId,
-        async: scriptProps.async || true,
-        defer: scriptProps.defer || true,
+        async: scriptProps.async ?? true,
+        defer: scriptProps.defer ?? true,
         nonce: scriptProps.nonce,
       });
     }
