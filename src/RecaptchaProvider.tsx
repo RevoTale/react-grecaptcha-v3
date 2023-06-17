@@ -6,6 +6,7 @@ import {
   useRef,
 } from 'react';
 import { getScriptSrc, maybeInjectScript, maybeRemoveScript } from './utils';
+
 type ExecuteRecaptcha = (action: string) => Promise<string>;
 type ContextType = {
   useExecuteReCaptcha: () => ExecuteRecaptcha;
@@ -19,13 +20,13 @@ export type ScriptProps = {
   id?: string;
 };
 export const defaultScriptId = 'rusted_labs_react_recaptcha_v3';
-export type Props = {
+export type Props = Readonly<{
   siteKey: string | null;
   children: ReactNode;
   useRecaptchaNet?: boolean;
   enterprise?: boolean;
   scriptProps?: ScriptProps;
-};
+}>;
 const RecaptchaProvider: FunctionComponent<Props> = ({
   siteKey,
   children,
@@ -54,7 +55,16 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
     return () => {
       maybeRemoveScript(reCaptchaScriptId);
     };
-  }, [siteKey]);
+  }, [
+    enterprise,
+    scriptProps.appendTo,
+    scriptProps.async,
+    scriptProps.defer,
+    scriptProps.id,
+    scriptProps.nonce,
+    siteKey,
+    useRecaptchaNet,
+  ]);
   const queueRef = useRef<
     {
       action: string;
@@ -67,13 +77,11 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
     queueRef.current.forEach(({ action, onComplete }) => {
       const { grecaptcha } = window;
       if (grecaptcha && siteKey) {
-        grecaptcha.ready(function () {
+        grecaptcha.ready(() => {
           if (grecaptcha.execute) {
-            grecaptcha
-              .execute(siteKey, { action: action })
-              .then(function (token) {
-                onComplete(token);
-              });
+            grecaptcha.execute(siteKey, { action: action }).then(token => {
+              onComplete(token);
+            });
           }
         });
       }
