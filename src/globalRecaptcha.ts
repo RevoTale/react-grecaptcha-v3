@@ -1,7 +1,10 @@
 export type GlobalRecaptchaExecuteProps = {
-    action:string
-}
+  action: string;
+};
 export type GlobalReCaptcha = {
-    ready:(callback:()=>void)=>void
-    execute?:(siteKey:string,props:GlobalRecaptchaExecuteProps)=>Promise<string>
-}
+  ready: (callback: () => void) => void;
+  execute?: (
+    siteKey: string,
+    props: GlobalRecaptchaExecuteProps
+  ) => Promise<string>;
+};
