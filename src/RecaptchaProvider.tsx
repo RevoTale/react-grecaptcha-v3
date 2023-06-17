@@ -12,7 +12,7 @@ import {
   prepareGlobalObject,
 } from './utils';
 
-type ExecuteRecaptcha = (action: string) => Promise<string>;
+export type ExecuteRecaptcha = (action: string) => Promise<string>;
 type ContextType = {
   useExecuteReCaptcha: () => ExecuteRecaptcha;
 };
