@@ -9,11 +9,13 @@ export type Props = {
     siteKey: string | null
     children: ReactNode
     reCaptchaScriptId?: string
+    useRecaptchaNet?:boolean
 }
 const RecaptchaProvider: FunctionComponent<Props> = ({
                                                          siteKey,
                                                          children,
-                                                         reCaptchaScriptId = null
+                                                         reCaptchaScriptId = null,
+                                                         useRecaptchaNet=false
                                                      }) => {
     useEffect(() => {
         if (reCaptchaScriptId === null) {
@@ -22,7 +24,11 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
         if (null === siteKey) {
             maybeRemoveScript(reCaptchaScriptId)
         } else {
-            maybeInjectScript(siteKey, reCaptchaScriptId)
+            maybeInjectScript({
+                scriptId:reCaptchaScriptId,
+                useRecaptchaNet,
+                siteKey
+            })
         }
     }, [siteKey])
     const queueRef = useRef<{
