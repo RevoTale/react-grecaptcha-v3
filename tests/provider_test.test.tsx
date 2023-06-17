@@ -40,7 +40,7 @@ describe('<RecaptchaProvider />', () => {
 
     const scriptElm = document.querySelector(scriptId);
 
-    expect(scriptElm.getAttribute('src')).toEqual(
+    expect(scriptElm?.getAttribute('src')).toEqual(
       'https://recaptcha.net/recaptcha/api.js?render=TESTKEY'
     );
   });
@@ -54,7 +54,7 @@ describe('<RecaptchaProvider />', () => {
 
     const scriptElm = document.getElementById(defaultScriptId);
 
-    expect(scriptElm.getAttribute('nonce')).toEqual('NONCE');
+    expect(scriptElm?.getAttribute('nonce')).toEqual('NONCE');
   });
 
   it('puts a defer to the script if provided', () => {
@@ -72,7 +72,7 @@ describe('<RecaptchaProvider />', () => {
 
     const scriptElm = document.getElementById(defaultScriptId);
 
-    expect(scriptElm.getAttribute('defer')).toEqual('');
+    expect(scriptElm?.getAttribute('defer')).toEqual('');
   });
 
   it('does not reload script if scriptProps object stays the same', async () => {
@@ -126,7 +126,7 @@ describe('<RecaptchaProvider />', () => {
 
       const scriptElm = document.getElementById(defaultScriptId);
 
-      expect(scriptElm.getAttribute('src')).toEqual(
+      expect(scriptElm?.getAttribute('src')).toEqual(
         'https://www.google.com/recaptcha/enterprise.js?render=TESTKEY'
       );
     });
@@ -140,7 +140,7 @@ describe('<RecaptchaProvider />', () => {
 
       const scriptElm = document.getElementById(scriptId);
 
-      expect(scriptElm.getAttribute('src')).toEqual(
+      expect(scriptElm?.getAttribute('src')).toEqual(
         'https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY'
       );
     });
