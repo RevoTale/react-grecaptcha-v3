@@ -5,7 +5,12 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import { getScriptSrc, maybeInjectScript, maybeRemoveScript } from './utils';
+import {
+  getScriptSrc,
+  maybeInjectScript,
+  maybeRemoveScript,
+  prepareGlobalObject,
+} from './utils';
 
 type ExecuteRecaptcha = (action: string) => Promise<string>;
 type ContextType = {
@@ -74,12 +79,12 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
   >([]);
 
   const handleNextInQueue = () => {
+    const recaptcha = prepareGlobalObject();
     queueRef.current.forEach(({ action, onComplete }) => {
-      const { grecaptcha } = window;
-      if (grecaptcha && siteKey) {
-        grecaptcha.ready(() => {
-          if (grecaptcha.execute) {
-            grecaptcha.execute(siteKey, { action: action }).then(token => {
+      if (siteKey) {
+        recaptcha.ready(() => {
+          if (recaptcha.execute) {
+            recaptcha.execute(siteKey, { action: action }).then(token => {
               onComplete(token);
             });
           }

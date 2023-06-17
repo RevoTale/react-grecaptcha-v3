@@ -1,3 +1,5 @@
+import { GlobalReCaptcha } from './globalRecaptcha';
+
 export type ReCaptchaProps = Readonly<{
   siteKey: string;
   useRecaptchaNet: boolean;
@@ -14,9 +16,10 @@ export const getScriptSrc = ({
   }
   return `https://${hostname}/recaptcha/api.js?render=${siteKey}`;
 };
-export const prepareGlobalObject = () => {
-  if (typeof window.grecaptcha === 'undefined') {
-    window.grecaptcha = {
+export const prepareGlobalObject = (): GlobalReCaptcha => {
+  const { grecaptcha } = window;
+  if (typeof grecaptcha === 'undefined') {
+    return (window.grecaptcha = {
       ready(cb) {
         if (typeof window.grecaptcha === 'undefined') {
           // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
@@ -29,8 +32,9 @@ export const prepareGlobalObject = () => {
           cb();
         }
       },
-    };
+    });
   }
+  return grecaptcha;
 };
 export type CreatScriptProps = Readonly<{
   id: string;
