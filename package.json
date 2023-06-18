@@ -13,7 +13,7 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/cjs && rimraf dist/*/tsconfig.tsbuildinfo && cp ./package.json ./dist/package.json",
+    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/cjs && rimraf dist/*/tsconfig.tsbuildinfo",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",
@@ -96,7 +96,12 @@
     "directory": "dist",
     "module": "esm/index.js",
     "main": "cjs/index.js",
-    "types": "types/index.d.ts"
+    "types": "types/index.d.ts",
+    "files":[
+      "cjs",
+      "esm",
+      "package.json"
+    ]
   },
   "packageManager": "pnpm@8.3.1",
   "type": "module",
