@@ -88,25 +88,13 @@
     "react": "^18.0",
     "react-dom": "^18.0"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./dist/typings/index.d.cts",
-        "default": "./dist/cjs/index.js"
-      },
-      "import": {
-        "types": "./dist/typings/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "default": {
-        "types": "./dist/typings/index.d.ts",
-        "default": "./dist/esm/index.js"
-      }
-    },
-    "./package.json": "./package.json"
-  },
+  "files": [
+    "./dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/typings/index.d.ts",
+  "private": false,
   "typings": "dist/typings/index.d.ts",
   "typescript": {
     "definition": "dist/typings/index.d.ts"
@@ -116,8 +104,5 @@
     "access": "public"
   },
   "type": "module",
-  "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score.",
-  "directories": {
-    "test": "tests"
-  }
+  "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
 }
