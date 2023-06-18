@@ -97,16 +97,18 @@
     "main": "cjs/index.js",
     "types": "types/index.d.ts",
     "access": "public",
+    "files": [
+      "base64.js",
+      "base64.mjs",
+      "base64.d.ts"
+    ],
+
     "exports": {
-      ".": [
-        {
-          "import": "./esm/index.js",
-          "require": "./cjs/index.js",
-          "default": "./cjs/index.js"
-        },
-        "./cjs/index.js"
-      ],
-      "./package.json": "./package.json"
+      ".": {
+        "import": "esm/index.js",
+        "require": "cjs/index.js",
+        "types": "types/index.d.ts"
+      }
     }
   },
   "files": [
