@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -92,9 +92,9 @@
   "private": false,
   "sideEffects": false,
   "files": [
-    "esm/index.js",
-    "cjs/index.js",
-    "types/index.d.ts"
+    "esm",
+    "cjs",
+    "types"
   ],
   "publishConfig": {
     "directory": "dist",
