@@ -13,7 +13,7 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/cjs && rimraf dist/*/tsconfig.tsbuildinfo",
+    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/cjs && rimraf dist/*/tsconfig.tsbuildinfo && cp ./package.json ./dist/package.json",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",
@@ -91,8 +91,7 @@
   "files": [
     "dist",
     "LICENSE",
-    "README.md",
-    "package.json"
+    "README.md"
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
