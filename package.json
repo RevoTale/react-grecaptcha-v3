@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -95,7 +95,18 @@
     "directory": "dist",
     "module": "esm/index.js",
     "main": "cjs/index.js",
-    "types": "types/index.d.ts"
+    "types": "types/index.d.ts",
+    "exports": {
+      ".": [
+        {
+          "import": "./esm/index.js",
+          "require": "./cjs/index.js",
+          "default": "./cjs/index.js"
+        },
+        "./cjs/index.js"
+      ],
+      "./package.json": "./package.json"
+    }
   },
   "files": [
     "cjs",
@@ -103,6 +114,7 @@
     "types",
     "package.json"
   ],
+
   "packageManager": "pnpm@8.3.1",
   "type": "module",
   "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
