@@ -1,13 +1,14 @@
 import { useContext } from 'react';
-import { Context } from './RecaptchaProvider';
+import { Context, ExecuteRecaptcha } from './RecaptchaProvider';
 
-const useExecuteReCaptcha = () => {
+const useExecuteReCaptcha = (): ExecuteRecaptcha => {
   return (
-    useContext(Context) ?? {
-      useExecuteReCaptcha: () => {
-        console.warn('Recaptcha context not injected.');
-      },
-    }
+    useContext(Context)?.executeRecaptcha ??
+    (action => {
+      return Promise.reject(
+        new Error(`Recaptcha context not injected. ${action} missed`)
+      );
+    })
   );
 };
 export default useExecuteReCaptcha;

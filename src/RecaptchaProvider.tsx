@@ -14,7 +14,7 @@ import {
 
 export type ExecuteRecaptcha = (action: string) => Promise<string>;
 type ContextType = {
-  useExecuteReCaptcha: () => ExecuteRecaptcha;
+  executeRecaptcha: ExecuteRecaptcha;
 };
 export const Context = createContext<ContextType | null>(null);
 export type ScriptProps = {
@@ -121,7 +121,7 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
   return (
     <Context.Provider
       value={{
-        useExecuteReCaptcha: (): ExecuteRecaptcha => executeRecaptcha,
+        executeRecaptcha,
       }}
     >
       {children}
