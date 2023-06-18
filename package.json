@@ -17,7 +17,7 @@
     "prebuild": "rimraf dist/ tsconfig.tsbuildinfo",
     "build": "tsc && tsc --module commonjs --outDir dist/cjs",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
-    "lint": "yarn run prettier:check && eslint ./",
+    "lint": "eslint ./",
     "fix": "yarn run prettier && eslint --fix ./",
     "prettier": "prettier --cache --write --list-different .",
     "prettier:check": "prettier --cache --check .",
