@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -88,16 +88,18 @@
     "react": "^18.0",
     "react-dom": "^18.0"
   },
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/typings/index.d.ts",
+  "main": "./src/index.ts",
+
   "private": false,
   "sideEffects": false,
   "typescript": {
-    "definition": "dist/typings/index.d.ts"
+    "definition": "dist/types/index.d.ts"
   },
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "module": "esm/index.js",
+    "main": "cjs/index.js",
+    "types": "types/index.d.ts"
   },
   "packageManager": "pnpm@8.3.1",
   "type": "module",

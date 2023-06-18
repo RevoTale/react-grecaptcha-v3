@@ -18,7 +18,7 @@
     "noEmit": false,
     "allowJs": false,
     "declaration": true,
-    "declarationDir": "dist/typings",
+    "declarationDir": "dist/types",
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "alwaysStrict": true,
