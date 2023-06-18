@@ -13,8 +13,7 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "prebuild": "rimraf dist/ tsconfig.tsbuildinfo",
-    "build": "tsc && tsc --module commonjs --outDir dist/cjs",
+    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/cjs && rimraf dist/*/tsconfig.tsbuildinfo",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",
