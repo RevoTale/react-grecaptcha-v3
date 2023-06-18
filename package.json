@@ -96,6 +96,9 @@
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   },
+  "publishConfig": {
+    "directory": "dist"
+  },
   "packageManager": "pnpm@8.3.1",
   "type": "module",
   "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
