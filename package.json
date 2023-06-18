@@ -91,34 +91,29 @@
   "main": "./src/index.ts",
   "private": false,
   "sideEffects": false,
+  "files": [
+    "esm/index.js",
+    "cjs/index.js",
+    "types/index.d.ts"
+  ],
   "publishConfig": {
     "directory": "dist",
     "module": "esm/index.js",
     "main": "cjs/index.js",
     "types": "types/index.d.ts",
     "access": "public",
-    "files": [
-      "base64.js",
-      "base64.mjs",
-      "base64.d.ts"
-    ],
+
 
     "exports": {
       ".": {
-        "import": "esm/index.js",
-        "require": "cjs/index.js",
-        "types": "types/index.d.ts"
+        "import": "./esm/index.js",
+        "require": "./cjs/index.js",
+        "types": "./types/index.d.ts"
       }
     }
   },
-  "files": [
-    "cjs",
-    "esm",
-    "types",
-    "package.json"
-  ],
 
-  "packageManager": "pnpm@8.3.1",
+  "packageManager": "pnpm@8.6.2",
   "type": "module",
   "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
 }
