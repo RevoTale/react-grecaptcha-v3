@@ -45,6 +45,27 @@ describe('<RecaptchaProvider />', () => {
     );
   });
 
+  it('accept a injectionDelay prop to delay recaptcha load', done => {
+    render(
+      <RecaptchaProvider siteKey="TESTKEY" injectionDelay={500} useRecaptchaNet>
+        <div />
+      </RecaptchaProvider>
+    );
+
+    const scriptElm = document.getElementById(defaultScriptId);
+
+    expect(scriptElm).toEqual(null);
+    setTimeout(() => {
+      expect(scriptElm).toEqual(null); //Verify a little bit later script still nt loaded
+      setTimeout(() => {
+        expect(
+          document.getElementById(defaultScriptId)?.getAttribute('src')
+        ).toBe('https://recaptcha.net/recaptcha/api.js?render=TESTKEY');
+        done();
+      }, 300);
+    }, 200);
+  });
+
   it('puts a nonce to the script if provided', () => {
     render(
       <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>

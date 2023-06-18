@@ -11,7 +11,7 @@
     "directory": "packages/my-awesome-package-example"
   },
   "scripts": {
-    "test": "jest --no-watchman",
+    "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
     "prebuild": "rimraf dist/ tsconfig.tsbuildinfo",
     "build": "tsc && tsc --module commonjs --outDir dist/cjs",
@@ -84,11 +84,10 @@
     "url": "https://github.com/RustedLabs/react-google-recaptcha-v3/issues"
   },
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
-  "peerDependencies": {},
   "dependencies": {
     "@bladl/react-hooks": "^1.5.2",
-    "react-dom": "^18.0",
-    "react": "^18.0"
+    "react": "^18.0",
+    "react-dom": "^18.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

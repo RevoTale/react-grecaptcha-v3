@@ -31,6 +31,7 @@ export type Props = Readonly<{
   useRecaptchaNet?: boolean;
   enterprise?: boolean;
   scriptProps?: ScriptProps;
+  injectionDelay?: number;
 }>;
 const RecaptchaProvider: FunctionComponent<Props> = ({
   siteKey,
@@ -38,30 +39,44 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
   scriptProps = {},
   useRecaptchaNet = false,
   enterprise = false,
+  injectionDelay = null,
 }) => {
   useEffect(() => {
     const reCaptchaScriptId = scriptProps.id || defaultScriptId;
+
     if (null === siteKey) {
       maybeRemoveScript(reCaptchaScriptId);
     } else {
-      maybeInjectScript({
-        src: getScriptSrc({
-          enterprise,
-          useRecaptchaNet,
-          siteKey,
-        }),
-        appendTo: scriptProps.appendTo ?? 'head',
-        id: reCaptchaScriptId,
-        async: scriptProps.async ?? true,
-        defer: scriptProps.defer ?? true,
-        nonce: scriptProps.nonce,
-      });
+      const inject = () => {
+        maybeInjectScript({
+          src: getScriptSrc({
+            enterprise,
+            useRecaptchaNet,
+            siteKey,
+          }),
+          appendTo: scriptProps.appendTo ?? 'head',
+          id: reCaptchaScriptId,
+          async: scriptProps.async ?? true,
+          defer: scriptProps.defer ?? true,
+          nonce: scriptProps.nonce,
+        });
+      };
+      if (injectionDelay === null) {
+        inject();
+      } else {
+        const timeout = setTimeout(inject, injectionDelay);
+        return () => {
+          maybeRemoveScript(reCaptchaScriptId);
+          clearTimeout(timeout);
+        };
+      }
     }
     return () => {
       maybeRemoveScript(reCaptchaScriptId);
     };
   }, [
     enterprise,
+    injectionDelay,
     scriptProps.appendTo,
     scriptProps.async,
     scriptProps.defer,
