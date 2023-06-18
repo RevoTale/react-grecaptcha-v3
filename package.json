@@ -73,7 +73,8 @@
     "google",
     "recaptcha",
     "v3",
-    "nextjs"
+    "nextjs",
+    "captcha"
   ],
   "author": "Rusted Love",
   "bugs": {
