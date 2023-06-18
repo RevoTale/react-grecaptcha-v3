@@ -12,7 +12,6 @@
   },
   "scripts": {
     "test": "jest --no-watchman",
-    "postinstall": "patch-package",
     "clean": "rimraf node_modules/",
     "prebuild": "rimraf dist/ tsconfig.tsbuildinfo",
     "build": "tsc && tsc --module commonjs --outDir dist/cjs",
@@ -51,7 +50,6 @@
     "jest-environment-jsdom": "^29.0",
     "jest-junit": "^16.0.0",
     "lint-staged": "^13.2.2",
-    "patch-package": "^6.5.1",
     "prettier": "^2.8.8",
     "react-test-renderer": "^18.2.0",
     "rimraf": "^4.4.1",
