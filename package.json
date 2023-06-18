@@ -89,22 +89,15 @@
     "react-dom": "^18.0"
   },
   "files": [
-    "./dist"
+    "dist",
+    "LICENSE",
+    "README.md",
+    "package.json"
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/typings/index.d.ts",
   "private": false,
-  "exports": {
-    ".": {
-      "types": {
-        "default": "./dist/cjs/index.js"
-      },
-      "module": "./dist/esm/index.js",
-      "default": "./dist/cjs/index.js"
-    },
-    "./package.json": "./package.json"
-  },
   "sideEffects": false,
   "typings": "dist/typings/index.d.ts",
   "typescript": {
