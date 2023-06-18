@@ -88,24 +88,15 @@
     "react": "^18.0",
     "react-dom": "^18.0"
   },
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/typings/index.d.ts",
   "private": false,
   "sideEffects": false,
-  "typings": "dist/typings/index.d.ts",
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   },
-  "publishConfig": {
-    "directory": "dist",
-    "access": "public"
-  },
+  "packageManager": "pnpm@8.3.1",
   "type": "module",
   "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
 }
