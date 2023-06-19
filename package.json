@@ -8,7 +8,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RustedLabs/react-google-recaptcha-v3.git",
-    "directory": "packages/my-awesome-package-example"
   },
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
