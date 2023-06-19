@@ -95,7 +95,9 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
 
   const handleNextInQueue = () => {
     const recaptcha = prepareGlobalObject();
-    queueRef.current.forEach(({ action, onComplete }) => {
+    queueRef.current.forEach(item => {
+      queueRef.current = queueRef.current.filter(value => value !== item);
+      const { action, onComplete } = item;
       if (siteKey) {
         recaptcha.ready(() => {
           if (recaptcha.execute) {
