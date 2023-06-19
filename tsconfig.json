@@ -18,7 +18,7 @@
     "noEmit": false,
     "allowJs": false,
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "dist/lib/types",
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "alwaysStrict": true,
@@ -28,7 +28,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "outDir": "dist/esm"
+    "outDir": "dist/lib/esm"
   },
   "exclude": ["node_modules", "**/__tests__/*", "dist"],
   "include": ["src"]
