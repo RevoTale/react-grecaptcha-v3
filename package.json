@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -106,7 +106,7 @@
       }
     }
   },
-
+"type": "module",
   "packageManager": "pnpm@8.6.2",
   "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
 }
