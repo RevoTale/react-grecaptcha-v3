@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/lib/cjs && rimraf dist/lib/*/tsconfig.tsbuildinfo && cp ./package.json ./dist/package.json",
+    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/lib/cjs && rimraf dist/lib/*/tsconfig.tsbuildinfo && cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",
