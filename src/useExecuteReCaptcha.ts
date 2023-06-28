@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context, ExecuteRecaptcha } from './RecaptchaProvider';
+import { Context, ExecuteRecaptcha } from './ReCaptchaProvider';
 
 const useExecuteReCaptcha = (): ExecuteRecaptcha => {
   return (

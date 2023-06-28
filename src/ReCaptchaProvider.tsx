@@ -33,7 +33,7 @@ export type Props = Readonly<{
   scriptProps?: ScriptProps;
   injectionDelay?: number;
 }>;
-const RecaptchaProvider: FunctionComponent<Props> = ({
+const ReCaptchaProvider: FunctionComponent<Props> = ({
   siteKey,
   children,
   scriptProps = {},
@@ -130,4 +130,4 @@ const RecaptchaProvider: FunctionComponent<Props> = ({
     </Context.Provider>
   );
 };
-export default RecaptchaProvider;
+export default ReCaptchaProvider;

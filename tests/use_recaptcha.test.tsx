@@ -1,11 +1,11 @@
 import { FunctionComponent, ReactNode } from 'react';
-import RecaptchaProvider from '../src/RecaptchaProvider';
+import ReCaptchaProvider from '../src/ReCaptchaProvider';
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha';
 import { renderHook } from '@testing-library/react-hooks';
 
 const TestWrapper: FunctionComponent<{ children: ReactNode }> = ({
   children,
-}) => <RecaptchaProvider siteKey="TESTKEY">{children}</RecaptchaProvider>;
+}) => <ReCaptchaProvider siteKey="TESTKEY">{children}</ReCaptchaProvider>;
 
 const TestEmptyWrapper: FunctionComponent<{ children: ReactNode }> = ({
   children,

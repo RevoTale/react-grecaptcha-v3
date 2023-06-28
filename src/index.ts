@@ -2,11 +2,11 @@ export type {
   Props as ReCaptchaProviderProps,
   ScriptProps as ReCaptchaProviderScriptProps,
   ExecuteRecaptcha,
-} from './RecaptchaProvider';
+} from './ReCaptchaProvider';
 export {
   defaultScriptId,
   default as ReCaptchaProvider,
-} from './RecaptchaProvider';
+} from './ReCaptchaProvider';
 export { default as useExecuteReCaptcha } from './useExecuteReCaptcha';
 export {
   default as useHideReCaptchaBadge,

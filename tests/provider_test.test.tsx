@@ -1,12 +1,12 @@
-import RecaptchaProvider, { defaultScriptId } from '../src/RecaptchaProvider';
+import ReCaptchaProvider, { defaultScriptId } from '../src/ReCaptchaProvider';
 import { render, waitFor } from '@testing-library/react';
 const scriptId = `#${defaultScriptId}`;
 describe('<RecaptchaProvider />', () => {
   it('inject google recaptcha script to the document', () => {
     render(
-      <RecaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+      <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.querySelector(scriptId);
@@ -15,9 +15,9 @@ describe('<RecaptchaProvider />', () => {
 
   it('remove google recaptcha script from the document when being unmounted', async () => {
     const { unmount } = render(
-      <RecaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+      <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.querySelector(scriptId);
@@ -33,9 +33,9 @@ describe('<RecaptchaProvider />', () => {
 
   it('accept a useRecaptchaNet prop to load recaptcha from recaptcha.net', () => {
     render(
-      <RecaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+      <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.querySelector(scriptId);
@@ -47,9 +47,9 @@ describe('<RecaptchaProvider />', () => {
 
   it('accept a injectionDelay prop to delay recaptcha load', done => {
     render(
-      <RecaptchaProvider siteKey="TESTKEY" injectionDelay={500} useRecaptchaNet>
+      <ReCaptchaProvider siteKey="TESTKEY" injectionDelay={500} useRecaptchaNet>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.getElementById(defaultScriptId);
@@ -68,9 +68,9 @@ describe('<RecaptchaProvider />', () => {
 
   it('puts a nonce to the script if provided', () => {
     render(
-      <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.getElementById(defaultScriptId);
@@ -80,7 +80,7 @@ describe('<RecaptchaProvider />', () => {
 
   it('puts a defer to the script if provided', () => {
     render(
-      <RecaptchaProvider
+      <ReCaptchaProvider
         siteKey="TESTKEY"
         scriptProps={{
           nonce: 'NONCE',
@@ -88,7 +88,7 @@ describe('<RecaptchaProvider />', () => {
         }}
       >
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.getElementById(defaultScriptId);
@@ -98,18 +98,18 @@ describe('<RecaptchaProvider />', () => {
 
   it('does not reload script if scriptProps object stays the same', async () => {
     const { rerender } = render(
-      <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.querySelector(scriptId);
     expect(scriptElm).not.toBeNull();
 
     rerender(
-      <RecaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     expect(scriptElm).toBe(document.querySelector(scriptId));
@@ -117,12 +117,12 @@ describe('<RecaptchaProvider />', () => {
 
   it('reloads script on scriptProps changes', async () => {
     const { rerender } = render(
-      <RecaptchaProvider
+      <ReCaptchaProvider
         siteKey="TESTKEY"
         scriptProps={{ async: false, nonce: 'prev_nonce' }}
       >
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
 
     const scriptElm = document.querySelector(scriptId);
@@ -130,12 +130,12 @@ describe('<RecaptchaProvider />', () => {
     expect(scriptElm).not.toBeNull();
 
     rerender(
-      <RecaptchaProvider
+      <ReCaptchaProvider
         siteKey="TESTKEY"
         scriptProps={{ async: true, nonce: 'second_nonce' }}
       >
         <div />
-      </RecaptchaProvider>
+      </ReCaptchaProvider>
     );
     expect((document.querySelector(scriptId) as HTMLScriptElement).nonce).toBe(
       'second_nonce'
@@ -152,9 +152,9 @@ describe('<RecaptchaProvider />', () => {
   describe('when using enterprise version', () => {
     it('accept an enterprise prop to load recaptcha from enterprise source', () => {
       render(
-        <RecaptchaProvider siteKey="TESTKEY" enterprise>
+        <ReCaptchaProvider siteKey="TESTKEY" enterprise>
           <div />
-        </RecaptchaProvider>
+        </ReCaptchaProvider>
       );
 
       const scriptElm = document.getElementById(defaultScriptId);
@@ -166,9 +166,9 @@ describe('<RecaptchaProvider />', () => {
 
     it('should load recaptcha from recaptcha.net', () => {
       render(
-        <RecaptchaProvider siteKey="TESTKEY" enterprise useRecaptchaNet>
+        <ReCaptchaProvider siteKey="TESTKEY" enterprise useRecaptchaNet>
           <div />
-        </RecaptchaProvider>
+        </ReCaptchaProvider>
       );
 
       const scriptElm = document.getElementById(defaultScriptId);
