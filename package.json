@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "repository": {
     "type": "git",
