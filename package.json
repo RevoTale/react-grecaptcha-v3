@@ -12,7 +12,10 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "build": "node ./build.js",
+    "build": "pnpm build:code && pnpm build:types",
+    "build:types": "tsc",
+    "build:code": "node ./build.js",
+
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",

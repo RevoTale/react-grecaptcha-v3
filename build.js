@@ -8,6 +8,7 @@ const entryPoints = glob.sync([
   './src/**/*.js',
   './src/**/*.jsx',
 ]);
+
 const shared = {
   entryPoints,
   // Treat all dependencies in package.json as externals to keep bundle size to a minimum
