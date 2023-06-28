@@ -32,7 +32,7 @@ const handleBuild = async () => {
     format: 'esm',
     //splitting: true,
     outExtension: {
-      '.js': '.mjs',
+      '.js': '.js',
     },
     target,
   });

@@ -97,7 +97,7 @@
   "sideEffects": false,
   "publishConfig": {
     "directory": "dist",
-    "module": "lib/index.mjs",
+    "module": "lib/index.js",
     "main": "lib/index.cjs",
     "types": "lib/index.d.ts",
     "access": "public"
