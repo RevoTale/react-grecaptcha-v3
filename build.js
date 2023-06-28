@@ -19,6 +19,7 @@ const shared = {
   bundle: false,
   minify: true,
   platform: 'neutral',
+  outdir: `${outDir}/lib/`,
 
   treeShaking: true,
   sourcemap: true,
@@ -33,7 +34,6 @@ const handleBuild = async () => {
     outExtension: {
       '.js': '.mjs',
     },
-    outdir: `${outDir}/esm/`,
     target,
   });
 
@@ -43,7 +43,6 @@ const handleBuild = async () => {
     outExtension: {
       '.js': '.cjs',
     },
-    outdir: `${outDir}/cjs/`,
     target,
   });
 };

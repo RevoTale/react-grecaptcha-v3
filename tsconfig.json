@@ -26,7 +26,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "outDir": "./dist/types",
+    "outDir": "./dist/lib",
   },
   "exclude": ["node_modules", "**/__tests__/*", "dist"],
   "include": ["src"]
