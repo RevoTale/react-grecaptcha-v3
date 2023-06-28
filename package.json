@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --no-watchman && pnpm lint",
     "clean": "rimraf node_modules/",
-    "build": "rimraf dist/ && tsc && tsc --module commonjs --outDir dist/lib/cjs && rimraf dist/lib/*/tsconfig.tsbuildinfo && cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
+    "build": "node ./build.js",
     "watch-build": "npx tsc-watch --project tsconfig.json --onSuccess \"yarn build\"",
     "lint": "eslint ./",
     "fix": "pnpm prettier && eslint --fix ./",
@@ -84,6 +84,7 @@
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
   "dependencies": {
     "@bladl/react-hooks": "^1.5.2",
+    "esbuild": "^0.18.10",
     "react": "^18.0",
     "react-dom": "^18.0"
   },
