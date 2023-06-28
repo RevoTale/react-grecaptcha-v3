@@ -2,13 +2,14 @@ import { build } from 'esbuild';
 import rimraf from 'rimraf';
 const target = ['chrome64', 'edge79', 'firefox67', 'node16', 'safari11'];
 import glob from 'resolve-glob';
+
 const entryPoints = glob.sync([
   './src/**/*.ts',
   './src/**/*.tsx',
   './src/**/*.js',
   './src/**/*.jsx',
 ]);
-
+const outDir = './dist';
 const shared = {
   entryPoints,
   // Treat all dependencies in package.json as externals to keep bundle size to a minimum
@@ -23,7 +24,7 @@ const shared = {
   sourcemap: true,
 };
 const handleBuild = async () => {
-  await rimraf('./dist');
+  await rimraf(outDir);
 
   void build({
     ...shared,
@@ -32,7 +33,7 @@ const handleBuild = async () => {
     outExtension: {
       '.js': '.mjs',
     },
-    outdir: './dist/esm/',
+    outdir: `${outDir}/esm/`,
     target,
   });
 
@@ -42,7 +43,7 @@ const handleBuild = async () => {
     outExtension: {
       '.js': '.cjs',
     },
-    outdir: './dist/cjs/',
+    outdir: `${outDir}/cjs/`,
     target,
   });
 };

@@ -15,7 +15,6 @@
     "downlevelIteration": true,
     "skipLibCheck": true,
     "listEmittedFiles": true,
-    "noEmit": false,
     "allowJs": false,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
@@ -28,7 +27,6 @@
     "isolatedModules": true,
     "incremental": true,
     "outDir": "./dist/types",
-    "emitDeclarationOnly": true
   },
   "exclude": ["node_modules", "**/__tests__/*", "dist"],
   "include": ["src"]
