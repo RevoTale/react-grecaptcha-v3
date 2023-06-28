@@ -19,7 +19,7 @@ const shared = {
   bundle: false,
   minify: true,
   platform: 'neutral',
-  outdir: `${outDir}/lib/`,
+  outdir: `${outDir}/`,
 
   treeShaking: true,
   sourcemap: true,
