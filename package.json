@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -100,7 +100,14 @@
     "module": "lib/index.js",
     "main": "lib/index.cjs",
     "types": "lib/index.d.ts",
-    "access": "public"
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./lib/index.js",
+        "require": "./lib/index.cjs",
+        "types": "./lib/index.d.ts"
+      }
+    }
   },
   "type": "module",
   "packageManager": "pnpm@8.6.2",
