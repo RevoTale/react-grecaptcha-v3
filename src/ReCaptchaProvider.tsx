@@ -101,7 +101,7 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
       if (siteKey) {
         recaptcha.ready(() => {
           if (recaptcha.execute) {
-            recaptcha.execute(siteKey, { action: action }).then(token => {
+            recaptcha.execute(siteKey, { action }).then(token => {
               onComplete(token);
             });
           }
