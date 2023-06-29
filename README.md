@@ -63,6 +63,7 @@ ReactDOM.render(
             appendTo: 'head', // optional, default to "head", can be "head" or "body",
             nonce: undefined // optional, string or undefined
         }}
+        injectionDelay={5000}
     >
         <AppLayout />
     </ReCaptchaProvider>,
