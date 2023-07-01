@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import makeContextError from './makeContextError';
 import { Context } from './ReCaptchaProvider';
 
-const useForceScriptLoad = (): (() => null | Error) => {
+const useSkipInjectionDelay = (): (() => null | Error) => {
   const context = useContext(Context);
   return () => {
     const forceInjectScript = context?.injectScript.current;
@@ -13,4 +13,4 @@ const useForceScriptLoad = (): (() => null | Error) => {
     return makeContextError('');
   };
 };
-export default useForceScriptLoad;
+export default useSkipInjectionDelay;
