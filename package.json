@@ -3,7 +3,7 @@
     "node": ">= 16.0.0"
   },
   "name": "@rusted/react-recaptcha-v3",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -92,7 +92,6 @@
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
   "dependencies": {
     "@bladl/react-hooks": "^1.5.2",
-
     "react": "^18.0",
     "react-dom": "^18.0"
   },
