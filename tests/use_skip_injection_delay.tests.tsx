@@ -20,7 +20,7 @@ describe('useSkipInjectionDelay hook', () => {
     const script = document.getElementById(defaultScriptId);
     expect(typeof script).toEqual('object');
     expect(script.getAttribute('src')).toEqual(
-      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY'
+      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
     );
   });
 });

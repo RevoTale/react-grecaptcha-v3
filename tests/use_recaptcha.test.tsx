@@ -52,12 +52,21 @@ describe('useExecuteReCaptcha hook', () => {
         resolve('nothing');
       }, 1000);
     }); //Wait until recaptcha loads
-
     for (let i = 0; i < 4; i++) {
       await expect(promises[i]).rejects.toEqual(
         `fixture_token_228_some_action_${i}__TESTKEY`
       );
     }
+  });
+  it('Recaptcha rejects work', async () => {
+    const { result } = renderHook(() => useExecuteReCaptcha(), {
+      wrapper: TestDelayWrapper,
+    });
+    const actionCall = async (action: string) => {
+      return await result.current(action);
+    };
+
+    await expect(actionCall).rejects.toEqual('');
   });
   it('Prevent duplicate call and make sure valid parameters passed', async () => {
     const { result } = renderHook(() => useExecuteReCaptcha(), {
@@ -67,6 +76,8 @@ describe('useExecuteReCaptcha hook', () => {
     const actionCall = async (action: string) => {
       return await result.current(action);
     };
+    //@ts-ignore
+    window.rusted_labs_recaptcha_callbacks = [];
     let totalActionCalls = 0;
     // @ts-ignore
     window.grecaptcha = {
@@ -76,10 +87,12 @@ describe('useExecuteReCaptcha hook', () => {
           resolve(`fixture_token_228_${action}__${siteKey}`);
         });
       },
-      ready: callback => {
-        callback();
+      ready: () => {
+        return;
       },
     };
+    // @ts-ignore
+    window.rusted_labs_recaptcha_callback();
     await expect(actionCall('some_action')).resolves.toEqual(
       'fixture_token_228_some_action__TESTKEY'
     );

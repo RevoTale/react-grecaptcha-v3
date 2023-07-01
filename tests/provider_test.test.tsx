@@ -41,7 +41,7 @@ describe('<RecaptchaProvider />', () => {
     const scriptElm = document.querySelector(scriptId);
 
     expect(scriptElm?.getAttribute('src')).toEqual(
-      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY'
+      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
     );
   });
 
@@ -60,7 +60,9 @@ describe('<RecaptchaProvider />', () => {
       setTimeout(() => {
         expect(
           document.getElementById(defaultScriptId)?.getAttribute('src')
-        ).toBe('https://recaptcha.net/recaptcha/api.js?render=TESTKEY');
+        ).toBe(
+          'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+        );
         done();
       }, 300);
     }, 200);
@@ -160,7 +162,7 @@ describe('<RecaptchaProvider />', () => {
       const scriptElm = document.getElementById(defaultScriptId);
 
       expect(scriptElm?.getAttribute('src')).toEqual(
-        'https://www.google.com/recaptcha/enterprise.js?render=TESTKEY'
+        'https://www.google.com/recaptcha/enterprise.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
       );
     });
 
@@ -174,7 +176,7 @@ describe('<RecaptchaProvider />', () => {
       const scriptElm = document.getElementById(defaultScriptId);
 
       expect(scriptElm?.getAttribute('src')).toEqual(
-        'https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY'
+        'https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
       );
     });
   });

@@ -12,16 +12,16 @@ export const getScriptSrc = ({
 }: ReCaptchaProps): string => {
   const hostname = useRecaptchaNet ? 'recaptcha.net' : 'www.google.com';
   if (enterprise) {
-    return `https://${hostname}/recaptcha/enterprise.js?render=${siteKey}`;
+    return `https://${hostname}/recaptcha/enterprise.js?render=${siteKey}&onload=rusted_labs_recaptcha_callback`;
   }
-  return `https://${hostname}/recaptcha/api.js?render=${siteKey}`;
+  return `https://${hostname}/recaptcha/api.js?render=${siteKey}&onload=rusted_labs_recaptcha_callback`;
 };
 export const prepareGlobalObject = (): GlobalReCaptcha => {
   const { grecaptcha } = window;
   if (typeof grecaptcha === 'undefined') {
     return (window.grecaptcha = {
       ready(cb) {
-        if (typeof window.grecaptcha === 'undefined') {
+        if (typeof window.grecaptcha?.execute === 'undefined') {
           // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
           // configuration. By default, any functions listed in its 'fns' property
           // are automatically executed when reCAPTCHA loads.
