@@ -109,3 +109,38 @@ ReactDOM.render(
     document.getElementById('app')
 );
 ```
+#### useSkipInjectionDelay 
+"I need my Google reCAPTCHA to be loaded now, regardless of the `injectionDelay` property. What should I do?"
+
+There is a way to ignore the `injectionDelay` and load reCAPTCHA assets immediately. The `useSkipInjectionDelay` hook returns a callback that accomplishes this. See the following usage example.
+```javascript
+import { ReCaptchaProvider,useExecuteReCaptcha } from '@rusted/react-recaptcha-v3';
+
+const GoogleReCaptchaValidatorComponent = () => {
+    const forceRecaptchaLoad = useSkipInjectionDelay();
+
+    // Create an event handler so you can call the verification on button click event or form submit
+    const handleReCaptchaVerify = useCallback(async () => {
+        forceRecaptchaLoad()//Load google recaptcha NOW!
+        const token = await executeRecaptcha('someVeryImportantAction');
+        // Do whatever you want with the token
+    }, [executeRecaptcha]);
+
+    // You can use useEffect to trigger the verification as soon as the component being loaded
+    useEffect(() => {
+        handleReCaptchaVerify();
+    }, [handleReCaptchaVerify]);
+
+    return <button onClick={handleReCaptchaVerify}>Verify recaptcha</button>;
+};
+
+ReactDOM.render(
+    <ReCaptchaProvider siteKey="[Your recaptcha key]">
+        <GoogleReCaptchaValidatorComponent />
+    </ReCaptchaProvider>,
+    document.getElementById('app')
+);
+```
+In our example, we have shown an important action that requires a token as fast as possible. However, keep in mind that for invisible reCAPTCHA, such a case can be suspicious, leading to a worse score. It is better to prepare reCAPTCHA at an earlier stage.
+
+For example, you can call `useSkipInjectionDelay` with some action triggered by the user earlier, when you do not need a token immediately.
