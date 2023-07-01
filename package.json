@@ -28,7 +28,9 @@
     "prepare": "pnpm build",
     "preversion": "pnpm lint",
     "version": "pnpm fix && git add -A src",
-    "postpublish": "git push && git push --tags"
+    "postpublish": "git push && git push --tags",
+    "changeset:version": "changeset version && git add --all",
+    "changeset:publish": "changeset publish"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -59,7 +61,10 @@
     "ts-node": "^10.9.1",
     "tslib": "^2.5.2",
     "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "resolve-glob": "^1.0.0",
+    "@changesets/cli": "^2.26.1",
+    "esbuild": "^0.18.10"
   },
   "lint-staged": {
     "packages/**/src/**/*.{ts,tsx}": [
@@ -87,10 +92,9 @@
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
   "dependencies": {
     "@bladl/react-hooks": "^1.5.2",
-    "esbuild": "^0.18.10",
+
     "react": "^18.0",
-    "react-dom": "^18.0",
-    "resolve-glob": "^1.0.0"
+    "react-dom": "^18.0"
   },
   "main": "./src/index.ts",
   "private": false,
