@@ -2,6 +2,7 @@ import {
   createContext,
   FunctionComponent,
   ReactNode,
+  RefObject,
   useEffect,
   useRef,
 } from 'react';
@@ -15,6 +16,7 @@ import {
 export type ExecuteRecaptcha = (action: string) => Promise<string>;
 type ContextType = {
   executeRecaptcha: ExecuteRecaptcha;
+  injectScript: RefObject<null | (() => void)>;
 };
 export const Context = createContext<ContextType | null>(null);
 export type ScriptProps = {
@@ -41,6 +43,7 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
   enterprise = false,
   injectionDelay = null,
 }) => {
+  const injectCallbackRef = useRef<null | (() => void)>(null);
   useEffect(() => {
     const reCaptchaScriptId = scriptProps.id || defaultScriptId;
 
@@ -61,11 +64,13 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
           nonce: scriptProps.nonce,
         });
       };
+      injectCallbackRef.current = inject;
       if (injectionDelay === null) {
         inject();
       } else {
         const timeout = setTimeout(inject, injectionDelay);
         return () => {
+          injectCallbackRef.current = null;
           maybeRemoveScript(reCaptchaScriptId);
           clearTimeout(timeout);
         };
@@ -124,6 +129,7 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
     <Context.Provider
       value={{
         executeRecaptcha,
+        injectScript: injectCallbackRef,
       }}
     >
       {children}
