@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
 permissions:
   contents: read # to fetch code (actions/checkout)
@@ -48,4 +48,4 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
-      - run: 'pnpm i && pnpm check && pnpm lint'
+      - run: 'pnpm i && pnpm prettier:check && pnpm lint'
