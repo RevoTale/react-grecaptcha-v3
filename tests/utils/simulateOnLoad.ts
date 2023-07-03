@@ -16,7 +16,6 @@ const simulateOnLoad = (timeout?: number) => {
   window.grecaptcha = {
     execute: (siteKey: string, { action }: { action: string }) => {
       actions.push(action);
-
       return new Promise(resolve => {
         const resolveResult = () => {
           const token = `fixture_token_228_${action}__${siteKey}`;

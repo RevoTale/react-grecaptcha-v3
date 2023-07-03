@@ -2,6 +2,7 @@ import { FunctionComponent, ReactNode } from 'react';
 import ReCaptchaProvider from '../src/ReCaptchaProvider';
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha';
 import { renderHook } from '@testing-library/react-hooks';
+import makeExecute from './utils/makeExecute';
 import simulateTokensOnLoad from './utils/simulateTokensOnLoad';
 const TestWrapper: FunctionComponent<{
   children: ReactNode;
@@ -24,27 +25,16 @@ describe('useExecuteReCaptcha hook', () => {
     const { result } = renderHook(() => useExecuteReCaptcha(), {
       wrapper: TestWrapper,
     });
-
     expect(typeof result.current).toEqual('function');
   });
   it('Fails on promise', async () => {
-    const failingContext = async () => {
-      const { result } = renderHook(() => useExecuteReCaptcha(), {
-        wrapper: TestEmptyWrapper,
-      });
-      return await result.current('some_action');
-    };
-    await expect(failingContext).rejects.toThrow(
+    const action = makeExecute(TestEmptyWrapper);
+    expect(action('failed_action_reason_context')).rejects.toThrow(
       'Recaptcha context not injected. some_action missed'
     );
   });
   it('Event fired during injectionDelay timeout are sent', async () => {
-    const { result } = renderHook(() => useExecuteReCaptcha(), {
-      wrapper: TestDelayWrapper,
-    });
-    const actionCall = async (action: string) => {
-      return await result.current(action);
-    };
+    const actionCall = makeExecute(TestDelayWrapper);
     const promises: Promise<string>[] = [];
     for (let i = 0; i < 4; i++) {
       promises.push(actionCall(`some_action_${i}`));
@@ -62,33 +52,23 @@ describe('useExecuteReCaptcha hook', () => {
   });
 
   it('Prevent duplicate call and make sure valid parameters passed', async () => {
-    const { result } = renderHook(() => useExecuteReCaptcha(), {
-      wrapper: TestWrapper,
-    });
-    const actionCall = async (action: string) => {
-      return await result.current(action);
-    };
+    const actionCall = makeExecute(TestWrapper);
     const { promise, stats } = simulateTokensOnLoad([
-      actionCall('some_action'),
-      actionCall('some_action_2'),
-      actionCall('another_action'),
+      actionCall('dup_call'),
+      actionCall('dup_call_2'),
+      actionCall('dup_call_3'),
     ]);
     const tokens = await promise;
     expect(tokens).toEqual([
-      'fixture_token_228_some_action__TESTKEY',
-      'fixture_token_228_some_action_2__TESTKEY',
-      'fixture_token_228_another_action__TESTKEY',
+      'fixture_token_228_dup_call__TESTKEY',
+      'fixture_token_228_dup_call_2__TESTKEY',
+      'fixture_token_228_dup_call_3__TESTKEY',
     ]);
     expect(stats.tokensResolved.current).toEqual(3);
   });
   it('Prevent duplicate call for delay', async () => {
     const totalActionCalls = 0;
-    const { result } = renderHook(() => useExecuteReCaptcha(), {
-      wrapper: TestDelayWrapper,
-    });
-    const actionCall = async (action: string) => {
-      return await result.current(action);
-    };
+    const actionCall = makeExecute(TestDelayWrapper);
 
     await expect(actionCall('some_action')).resolves.toEqual(
       'fixture_token_228_some_action__TESTKEY'
