@@ -7,6 +7,7 @@ const subscribeOnLoad = (callback: () => void) => {
   }
   const key = 'rusted_labs_recaptcha_callbacks' as const;
   window.rusted_labs_recaptcha_callback = () => {
+    console.log('On load event triggered');
     const callbacks = window[key];
     if (callbacks) {
       callbacks.forEach(item => {

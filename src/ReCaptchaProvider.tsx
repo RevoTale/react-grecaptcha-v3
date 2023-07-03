@@ -3,12 +3,13 @@ import {
   FunctionComponent,
   ReactNode,
   RefObject,
-  useCallback,
   useEffect,
   useRef,
 } from 'react';
 import subscribeOnLoad from './subscribeOnLoad';
 import unsubscribeOnLoad from './unsubscribeOnLoad';
+import useHandleNextInQueue from './useHandleNextInQueue';
+import useQueueRef from './useQueueRef';
 import { getScriptSrc, maybeInjectScript, maybeRemoveScript } from './utils';
 
 export type ExecuteRecaptcha = (action: string) => Promise<string>;
@@ -42,39 +43,20 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
   injectionDelay = null,
 }) => {
   const injectCallbackRef = useRef<null | (() => void)>(null);
-  const handleNextInQueue = useCallback(() => {
-    queueRef.current.forEach(item => {
-      const { action, onComplete, onError } = item;
-
-      if (siteKey) {
-        subscribeOnLoad(() => {
-          queueRef.current = queueRef.current.filter(value => value !== item);
-          if (window.grecaptcha?.execute) {
-            window.grecaptcha
-              .execute(siteKey, { action })
-              .then(onComplete)
-              .catch(err => {
-                if (err instanceof Error) {
-                  onError(err);
-                  return;
-                }
-                onError(new Error('Unexpected error'));
-              });
-            return;
-          }
-          onError(new Error('Bad execute().'));
-        });
-      }
-    });
-  }, [siteKey]);
+  const queueRef = useQueueRef();
+  const handleNextInQueue = useHandleNextInQueue(siteKey, queueRef);
+  useEffect(() => {
+    subscribeOnLoad(handleNextInQueue);
+    return () => {
+      unsubscribeOnLoad(handleNextInQueue);
+    };
+  }, [handleNextInQueue]);
   useEffect(() => {
     const reCaptchaScriptId = scriptProps.id || defaultScriptId;
-
     if (null === siteKey) {
       maybeRemoveScript(reCaptchaScriptId);
     } else {
       const inject = () => {
-        subscribeOnLoad(handleNextInQueue);
         maybeInjectScript({
           src: getScriptSrc({
             enterprise,
@@ -97,7 +79,6 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
           injectCallbackRef.current = null;
           maybeRemoveScript(reCaptchaScriptId);
           clearTimeout(timeout);
-          unsubscribeOnLoad(handleNextInQueue);
         };
       }
     }
@@ -116,13 +97,6 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
     siteKey,
     useRecaptchaNet,
   ]);
-  const queueRef = useRef<
-    {
-      action: string;
-      onComplete: (token: string) => void;
-      onError: (reason: Error) => void;
-    }[]
-  >([]);
 
   const executeRecaptcha = async (action: string): Promise<string> => {
     return new Promise((resolve, reject) => {
