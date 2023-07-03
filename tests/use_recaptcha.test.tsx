@@ -34,10 +34,11 @@ describe('useExecuteReCaptcha hook', () => {
     );
   });
   it('Event fired during injectionDelay timeout are sent', async () => {
-    const actionCall = makeExecute(TestDelayWrapper);
     const expectedResult: string[] = [];
 
     const { stats, promise } = simulateTokensOnLoad(() => {
+      const actionCall = makeExecute(TestDelayWrapper);
+
       const promises: Promise<string>[] = [];
       for (let i = 0; i < 4; i++) {
         promises.push(actionCall(`some_action_${i}`));
@@ -50,7 +51,7 @@ describe('useExecuteReCaptcha hook', () => {
         resolve('nothing');
       }, 1000);
     }); //Wait until recaptcha loads
-
+    console.log(stats.tokens);
     await expect(promise).resolves.toEqual(expectedResult);
     expect(stats.tokensResolved.current).toEqual(4);
     expect(stats.tokens).toEqual(expectedResult);
@@ -81,6 +82,7 @@ describe('useExecuteReCaptcha hook', () => {
       actionCall('delayed_action_2'),
       actionCall('delayed_action_3'),
     ]);
+    console.log(stats.tokens);
     expect(stats.tokensResolved.current).toEqual(0);
     await expect(promise).resolves.toEqual([
       'fixture_token_228_delayed_action__TESTKEY',

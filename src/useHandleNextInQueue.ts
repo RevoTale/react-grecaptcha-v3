@@ -7,29 +7,30 @@ const useHandleNextInQueue = (
   queueRef: MutableRefObject<QueueItem[]>
 ) => {
   return useCallback(() => {
-    queueRef.current.forEach(item => {
+    if (!siteKey) {
+      return;
+    }
+    let item;
+    while ((item = queueRef.current.shift())) {
       const { action, onComplete, onError } = item;
 
-      if (siteKey) {
-        subscribeEvent(() => {
-          queueRef.current = queueRef.current.filter(value => value !== item);
-          if (window.grecaptcha?.execute) {
-            window.grecaptcha
-              .execute(siteKey, { action })
-              .then(onComplete)
-              .catch((err: string | Error | undefined) => {
-                if (err instanceof Error) {
-                  onError(err);
-                  return;
-                }
-                onError(new Error('Unexpected error'));
-              });
-            return;
-          }
-          onError(new Error('Bad execute().'));
-        });
-      }
-    });
+      subscribeEvent(() => {
+        if (window.grecaptcha?.execute) {
+          window.grecaptcha
+            .execute(siteKey, { action })
+            .then(onComplete)
+            .catch((err: string | Error | undefined) => {
+              if (err instanceof Error) {
+                onError(err);
+                return;
+              }
+              onError(new Error('Unexpected error'));
+            });
+          return;
+        }
+        onError(new Error('Bad execute().'));
+      });
+    }
   }, [siteKey]);
 };
 export default useHandleNextInQueue;
