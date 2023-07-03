@@ -1,6 +1,10 @@
 import { key } from '../../src/global/globals';
-
-const simulateOnLoad = (timeout?: number) => {
+export type Stats = {
+  tokens: string[];
+  actions: string[];
+  tokensResolved: { current: number };
+};
+const simulateOnLoad = (timeout?: number): Stats => {
   const callback = window[key];
   const tokensResolved = {
     current: 0,
@@ -35,6 +39,7 @@ const simulateOnLoad = (timeout?: number) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   window.grecaptcha = undefined;
+  window[key] = undefined;
   return {
     tokensResolved,
     tokens,
