@@ -2,6 +2,7 @@ import { FunctionComponent, ReactNode } from 'react';
 import ReCaptchaProvider from '../src/ReCaptchaProvider';
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha';
 import { renderHook } from '@testing-library/react-hooks';
+import simulateTokensOnLoad from './utils/simulateTokensOnLoad';
 const TestWrapper: FunctionComponent<{
   children: ReactNode;
 }> = ({ children }) => {
@@ -61,24 +62,24 @@ describe('useExecuteReCaptcha hook', () => {
   });
 
   it('Prevent duplicate call and make sure valid parameters passed', async () => {
-    const totalActionCalls = 0;
     const { result } = renderHook(() => useExecuteReCaptcha(), {
       wrapper: TestWrapper,
     });
     const actionCall = async (action: string) => {
       return await result.current(action);
     };
-
-    await expect(actionCall('some_action')).resolves.toEqual(
-      'fixture_token_228_some_action__TESTKEY'
-    );
-    await expect(actionCall('some_action_2')).resolves.toEqual(
-      'fixture_token_228_some_action_2__TESTKEY'
-    );
-    await expect(actionCall('another_action')).resolves.toEqual(
-      'fixture_token_228_another_action__TESTKEY'
-    );
-    expect(totalActionCalls).toEqual(3);
+    const { promise, stats } = simulateTokensOnLoad([
+      actionCall('some_action'),
+      actionCall('some_action_2'),
+      actionCall('another_action'),
+    ]);
+    const tokens = await promise;
+    expect(tokens).toEqual([
+      'fixture_token_228_some_action__TESTKEY',
+      'fixture_token_228_some_action_2__TESTKEY',
+      'fixture_token_228_another_action__TESTKEY',
+    ]);
+    expect(stats.tokensResolved.current).toEqual(3);
   });
   it('Prevent duplicate call for delay', async () => {
     const totalActionCalls = 0;

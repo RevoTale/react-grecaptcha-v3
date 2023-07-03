@@ -1,4 +1,5 @@
-import { GlobalReCaptcha } from '../src/globalRecaptcha';
+import { GlobalReCaptcha } from '../src/global/globalRecaptcha';
+
 declare global {
   interface Window {
     grecaptcha: GlobalReCaptcha | undefined;
