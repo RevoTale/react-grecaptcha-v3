@@ -6,8 +6,8 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import subscribeOnLoad from './subscribeOnLoad';
-import unsubscribeOnLoad from './unsubscribeOnLoad';
+import subscribeEvent from './subscribeEvent';
+import unsubscribeEvent from './unsubscribeEvent';
 import useHandleNextInQueue from './useHandleNextInQueue';
 import useQueueRef from './useQueueRef';
 import { getScriptSrc, maybeInjectScript, maybeRemoveScript } from './utils';
@@ -46,9 +46,9 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
   const queueRef = useQueueRef();
   const handleNextInQueue = useHandleNextInQueue(siteKey, queueRef);
   useEffect(() => {
-    subscribeOnLoad(handleNextInQueue);
+    subscribeEvent(handleNextInQueue);
     return () => {
-      unsubscribeOnLoad(handleNextInQueue);
+      unsubscribeEvent(handleNextInQueue);
     };
   }, [handleNextInQueue]);
   useEffect(() => {

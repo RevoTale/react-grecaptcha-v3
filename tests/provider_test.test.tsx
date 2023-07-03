@@ -1,3 +1,4 @@
+import { key } from '../src/global/globals';
 import ReCaptchaProvider, { defaultScriptId } from '../src/ReCaptchaProvider';
 import { render, waitFor } from '@testing-library/react';
 const scriptId = `#${defaultScriptId}`;
@@ -41,7 +42,7 @@ describe('<RecaptchaProvider />', () => {
     const scriptElm = document.querySelector(scriptId);
 
     expect(scriptElm?.getAttribute('src')).toEqual(
-      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+      `https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=${key}`
     );
   });
 
@@ -61,7 +62,7 @@ describe('<RecaptchaProvider />', () => {
         expect(
           document.getElementById(defaultScriptId)?.getAttribute('src')
         ).toBe(
-          'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+          `https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=${key}`
         );
         done();
       }, 300);
@@ -162,7 +163,7 @@ describe('<RecaptchaProvider />', () => {
       const scriptElm = document.getElementById(defaultScriptId);
 
       expect(scriptElm?.getAttribute('src')).toEqual(
-        'https://www.google.com/recaptcha/enterprise.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+        `https://www.google.com/recaptcha/enterprise.js?render=TESTKEY&onload=${key}`
       );
     });
 
@@ -176,7 +177,7 @@ describe('<RecaptchaProvider />', () => {
       const scriptElm = document.getElementById(defaultScriptId);
 
       expect(scriptElm?.getAttribute('src')).toEqual(
-        'https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+        `https://recaptcha.net/recaptcha/enterprise.js?render=TESTKEY&onload=${key}`
       );
     });
   });

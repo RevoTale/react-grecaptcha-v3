@@ -1,5 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react';
 import { useSkipInjectionDelay } from '../src';
+import { key } from '../src/global/globals';
 import ReCaptchaProvider, { defaultScriptId } from '../src/ReCaptchaProvider';
 import { renderHook } from '@testing-library/react-hooks';
 
@@ -20,7 +21,7 @@ describe('useSkipInjectionDelay hook', () => {
     const script = document.getElementById(defaultScriptId);
     expect(typeof script).toEqual('object');
     expect(script.getAttribute('src')).toEqual(
-      'https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=rusted_labs_recaptcha_callback'
+      `https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=${key}`
     );
   });
 });

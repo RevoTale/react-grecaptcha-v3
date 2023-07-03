@@ -1,4 +1,4 @@
-import { GlobalReCaptcha } from './globalRecaptcha';
+import { key } from './global/globals';
 
 export type ReCaptchaProps = Readonly<{
   siteKey: string;
@@ -12,30 +12,11 @@ export const getScriptSrc = ({
 }: ReCaptchaProps): string => {
   const hostname = useRecaptchaNet ? 'recaptcha.net' : 'www.google.com';
   if (enterprise) {
-    return `https://${hostname}/recaptcha/enterprise.js?render=${siteKey}&onload=rusted_labs_recaptcha_callback`;
+    return `https://${hostname}/recaptcha/enterprise.js?render=${siteKey}&onload=${key}`;
   }
-  return `https://${hostname}/recaptcha/api.js?render=${siteKey}&onload=rusted_labs_recaptcha_callback`;
+  return `https://${hostname}/recaptcha/api.js?render=${siteKey}&onload=${key}`;
 };
-export const prepareGlobalObject = (): GlobalReCaptcha => {
-  const { grecaptcha } = window;
-  if (typeof grecaptcha === 'undefined') {
-    return (window.grecaptcha = {
-      ready(cb) {
-        if (typeof window.grecaptcha?.execute === 'undefined') {
-          // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
-          // configuration. By default, any functions listed in its 'fns' property
-          // are automatically executed when reCAPTCHA loads.
-          const c = '___grecaptcha_cfg' as const;
-          window[c] = window[c] || {};
-          (window[c]['fns'] = window[c]['fns'] || []).push(cb);
-        } else {
-          cb();
-        }
-      },
-    });
-  }
-  return grecaptcha;
-};
+
 export type CreatScriptProps = Readonly<{
   id: string;
   async: boolean;

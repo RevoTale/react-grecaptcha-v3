@@ -1,5 +1,5 @@
 import { MutableRefObject, useCallback } from 'react';
-import subscribeOnLoad from './subscribeOnLoad';
+import subscribeEvent from './subscribeEvent';
 import { QueueItem } from './useQueueRef';
 
 const useHandleNextInQueue = (
@@ -11,13 +11,13 @@ const useHandleNextInQueue = (
       const { action, onComplete, onError } = item;
 
       if (siteKey) {
-        subscribeOnLoad(() => {
+        subscribeEvent(() => {
           queueRef.current = queueRef.current.filter(value => value !== item);
           if (window.grecaptcha?.execute) {
             window.grecaptcha
               .execute(siteKey, { action })
               .then(onComplete)
-              .catch(err => {
+              .catch((err: string | Error | undefined) => {
                 if (err instanceof Error) {
                   onError(err);
                   return;
