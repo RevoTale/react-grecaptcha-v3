@@ -1,13 +1,11 @@
 import { queueKey } from './globals';
-import unsubscribeEvent from '../unsubscribeEvent';
-
 const globalOnLoad = () => {
   const callbacks = window[queueKey];
   if (callbacks) {
-    callbacks.forEach(item => {
+    let item;
+    while ((item = callbacks.shift())) {
       item();
-      unsubscribeEvent(item);
-    });
+    }
   }
 };
 export default globalOnLoad;

@@ -12,6 +12,16 @@ it('Test global subscription functions behaviour', () => {
   subscribeEvent(() => {
     triggers.push('3');
   });
+  window.grecaptcha = {
+    execute: () => {
+      return new Promise(resolve => {
+        resolve('now');
+      });
+    },
+    ready: callback => {
+      callback();
+    },
+  };
   globalOnLoad();
   expect(triggers.length).toEqual(3);
   subscribeEvent(() => {
