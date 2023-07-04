@@ -2,7 +2,7 @@ import globalOnLoad from './global/globalOnLoad';
 import { key, queueKey } from './global/globals';
 
 const subscribeEvent = (callback: () => void) => {
-  if (window.grecaptcha) {
+  if (window.grecaptcha?.execute) {
     callback();
     return;
   }
