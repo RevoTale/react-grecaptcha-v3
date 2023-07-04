@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.0
+
+### Minor Changes
+
+- 9be3537: Bug fix. Recaptcha events registered during `injectionDelay` did not fire.
+
 ## 0.2.0
 
 ### Minor Changes
