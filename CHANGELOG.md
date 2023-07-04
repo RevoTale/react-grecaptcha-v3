@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.1
+
+### Patch Changes
+
+- 9389a2e: Fix cases when window.grecaptcha is set, but no `execute` function
+
 ## 0.3.0
 
 ### Minor Changes
