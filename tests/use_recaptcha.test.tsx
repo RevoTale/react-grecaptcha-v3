@@ -3,7 +3,9 @@ import ReCaptchaProvider from '../src/ReCaptchaProvider';
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha';
 import { renderHook } from '@testing-library/react-hooks';
 import makeExecute from './utils/makeExecute';
-import simulateTokensOnLoad from './utils/simulateTokensOnLoad';
+import simulateTokensOnLoad, {
+  getStatSnapshot,
+} from './utils/simulateTokensOnLoad';
 const TestWrapper: FunctionComponent<{
   children: ReactNode;
 }> = ({ children }) => {
@@ -28,15 +30,19 @@ describe('useExecuteReCaptcha hook', () => {
     expect(typeof result.current).toEqual('function');
   });
   it('Fails on promise', async () => {
-    const action = makeExecute(TestEmptyWrapper);
-    expect(action('failed_action_reason_context')).rejects.toThrow(
+    const { promise } = simulateTokensOnLoad(() => {
+      const action = makeExecute(TestEmptyWrapper);
+      return [action('failed_action_reason_context')];
+    });
+
+    await expect(promise).rejects.toThrow(
       'Recaptcha context not injected. failed_action_reason_context missed'
     );
   });
   it('Event fired during injectionDelay timeout are sent', async () => {
     const expectedResult: string[] = [];
-
-    const { stats, promise } = simulateTokensOnLoad(() => {
+    const before = getStatSnapshot();
+    const { promise } = simulateTokensOnLoad(() => {
       const actionCall = makeExecute(TestDelayWrapper);
 
       const promises: Promise<string>[] = [];
@@ -45,20 +51,19 @@ describe('useExecuteReCaptcha hook', () => {
         expectedResult.push(`fixture_token_228_some_action_${i}__TESTKEY`);
       }
       return promises;
-    }, {});
-    await new Promise<string>(resolve => {
-      setTimeout(() => {
-        resolve('nothing');
-      }, 1000);
-    }); //Wait until recaptcha loads
-    console.log(stats.tokens);
+    });
     await expect(promise).resolves.toEqual(expectedResult);
-    expect(stats.tokensResolved.current).toEqual(4);
-    expect(stats.tokens).toEqual(expectedResult);
+    console.log(getStatSnapshot());
+    expect(getStatSnapshot().tokens.splice(before.tokens.length)).toEqual(
+      expectedResult
+    );
+    expect(getStatSnapshot().tokens.length - before.tokens.length).toEqual(4);
   });
 
   it('Prevent duplicate call and make sure valid parameters passed', async () => {
-    const { promise, stats } = simulateTokensOnLoad(() => {
+    const before = getStatSnapshot();
+
+    const { promise } = simulateTokensOnLoad(() => {
       const actionCall = makeExecute(TestWrapper);
 
       return [
@@ -67,28 +72,33 @@ describe('useExecuteReCaptcha hook', () => {
         actionCall('dup_call_3'),
       ];
     });
-    await expect(promise).resolves.toEqual([
+    const result = [
       'fixture_token_228_dup_call__TESTKEY',
       'fixture_token_228_dup_call_2__TESTKEY',
       'fixture_token_228_dup_call_3__TESTKEY',
-    ]);
-    expect(stats.tokensResolved.current).toEqual(3);
+    ];
+    await expect(promise).resolves.toEqual(result);
+    const stats = getStatSnapshot();
+    expect(stats.tokens.splice(before.tokens.length)).toEqual(result);
+    expect(stats.tokens.length - before.tokens.length).toEqual(3);
   });
   it('Prevent duplicate call for delay', async () => {
     const actionCall = makeExecute(TestDelayWrapper);
 
-    const { promise, stats } = simulateTokensOnLoad(() => [
+    const before = getStatSnapshot().tokens;
+
+    const { promise } = simulateTokensOnLoad(() => [
       actionCall('delayed_action'),
       actionCall('delayed_action_2'),
       actionCall('delayed_action_3'),
     ]);
-    console.log(stats.tokens);
-    expect(stats.tokensResolved.current).toEqual(0);
-    await expect(promise).resolves.toEqual([
+    const result = [
       'fixture_token_228_delayed_action__TESTKEY',
       'fixture_token_228_delayed_action_2__TESTKEY',
       'fixture_token_228_delayed_action_3__TESTKEY',
-    ]);
-    expect(stats.tokensResolved.current).toEqual(3);
+    ];
+    await expect(promise).resolves.toEqual(result);
+    expect(before.splice(result.length)).toEqual(result);
+    expect(before.length - before.length).toEqual(result.length);
   });
 });
