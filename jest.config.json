@@ -1,5 +1,10 @@
 {
   "preset": "ts-jest",
   "testMatch": ["**/__tests__/?(*.)(spec|test).(ts|jsx)?(x)"],
-  "testEnvironment": "jsdom"
+  "testEnvironment": "jsdom",
+  "globals": {
+    "ts-jest": {
+      "tsConfig":  "./__tests__/tsconfig.json"
+    }
+  }
 }
