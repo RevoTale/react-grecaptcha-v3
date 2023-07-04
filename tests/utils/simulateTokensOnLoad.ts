@@ -9,14 +9,10 @@ const recaptchaExecuteFixture = (
   siteKey: string,
   { action }: { action: string }
 ) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window[globalStatsKey].actions.push(action);
-  return new Promise(resolve => {
+  return new Promise<string>(resolve => {
     const resolveResult = () => {
       const token = `fixture_token_228_${action}__${siteKey}`;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       window[globalStatsKey].tokens.push(token);
       resolve(token);
     };
@@ -24,12 +20,8 @@ const recaptchaExecuteFixture = (
   });
 };
 export const getSimulationStats = (): GlobalStats => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   let globalStats = window[globalStatsKey];
   if (!globalStats) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     window[globalStatsKey] = globalStats = {
       actions: [],
       tokens: [],
@@ -48,10 +40,11 @@ const simulateTokensOnLoad = (
   promises: () => Promise<string>[]
 ): { promise: Promise<string[]>; stats: GlobalStats } => {
   const loadScript = () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     window.grecaptcha = {
       execute: recaptchaExecuteFixture,
+      ready: callback => {
+        callback();
+      },
     };
     const onLoadCallback = window[key];
     if (!onLoadCallback) {

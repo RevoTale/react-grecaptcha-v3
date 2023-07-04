@@ -10,7 +10,7 @@
     "url": "git+https://github.com/RustedLabs/react-google-recaptcha-v3.git"
   },
   "scripts": {
-    "test": "jest --no-watchman && pnpm lint",
+    "test": "tsc --project ./tests/tsconfig.json && jest --no-watchman && pnpm lint && pnpm types:check",
     "clean": "rimraf node_modules/",
     "build": "pnpm build:code && pnpm build:types && pnpm build:copy",
     "build:types": "tsc --emitDeclarationOnly",

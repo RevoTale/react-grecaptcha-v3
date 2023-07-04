@@ -6,6 +6,7 @@ declare global {
     grecaptcha: GlobalReCaptcha | undefined;
     ___grecaptcha_cfg?: { fns?: unknown[] };
     rusted_labs_recaptcha_callback?: () => void;
+    rusted_labs_recaptcha_callbacks?: (() => void)[];
     grecaptcha_stats: GlobalStats;
   }
 }

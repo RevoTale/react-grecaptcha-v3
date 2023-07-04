@@ -20,7 +20,7 @@ describe('useSkipInjectionDelay hook', () => {
     result.current();
     const script = document.getElementById(defaultScriptId);
     expect(typeof script).toEqual('object');
-    expect(script.getAttribute('src')).toEqual(
+    expect(script?.getAttribute('src')).toEqual(
       `https://recaptcha.net/recaptcha/api.js?render=TESTKEY&onload=${key}`
     );
   });
