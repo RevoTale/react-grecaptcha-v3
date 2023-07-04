@@ -29,5 +29,5 @@
     "outDir": "./dist/lib",
   },
   "exclude": ["node_modules", "**/__tests__/*", "dist"],
-  "include": ["src","tests"]
+  "include": ["src"]
 }
