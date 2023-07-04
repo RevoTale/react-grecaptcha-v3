@@ -53,7 +53,6 @@ describe('useExecuteReCaptcha hook', () => {
       return promises;
     });
     await expect(promise).resolves.toEqual(expectedResult);
-    console.log(getStatSnapshot());
     expect(getStatSnapshot().tokens.splice(before.tokens.length)).toEqual(
       expectedResult
     );
@@ -62,7 +61,11 @@ describe('useExecuteReCaptcha hook', () => {
 
   it('Prevent duplicate call and make sure valid parameters passed', async () => {
     const before = getStatSnapshot();
-
+    const result = [
+      'fixture_token_228_dup_call__TESTKEY',
+      'fixture_token_228_dup_call_2__TESTKEY',
+      'fixture_token_228_dup_call_3__TESTKEY',
+    ];
     const { promise } = simulateTokensOnLoad(() => {
       const actionCall = makeExecute(TestWrapper);
 
@@ -72,14 +75,9 @@ describe('useExecuteReCaptcha hook', () => {
         actionCall('dup_call_3'),
       ];
     });
-    const result = [
-      'fixture_token_228_dup_call__TESTKEY',
-      'fixture_token_228_dup_call_2__TESTKEY',
-      'fixture_token_228_dup_call_3__TESTKEY',
-    ];
     await expect(promise).resolves.toEqual(result);
     const stats = getStatSnapshot();
-    expect(stats.tokens.splice(before.tokens.length)).toEqual(result);
+    expect([...stats.tokens].splice(before.tokens.length)).toEqual(result);
     expect(stats.tokens.length - before.tokens.length).toEqual(3);
   });
   it('Prevent duplicate call for delay', async () => {
@@ -98,7 +96,9 @@ describe('useExecuteReCaptcha hook', () => {
       'fixture_token_228_delayed_action_3__TESTKEY',
     ];
     await expect(promise).resolves.toEqual(result);
-    expect(before.splice(result.length)).toEqual(result);
-    expect(before.length - before.length).toEqual(result.length);
+    expect(getStatSnapshot().tokens.splice(before.length)).toEqual(result);
+    expect(getStatSnapshot().tokens.length - before.length).toEqual(
+      result.length
+    );
   });
 });
