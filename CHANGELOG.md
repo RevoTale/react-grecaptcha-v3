@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.2
+
+### Patch Changes
+
+- 9b12da5: Fixed bug with not all actions sent on recaptcha load.
+
 ## 0.3.1
 
 ### Patch Changes
