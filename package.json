@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/RustedLabs/react-google-recaptcha-v3.git"
   },
+
   "scripts": {
     "test": "jest --no-watchman && pnpm lint && pnpm types:check",
     "clean": "rimraf node_modules/",
@@ -85,7 +86,11 @@
     "nextjs",
     "captcha"
   ],
-  "author": "Rusted Love",
+  "author": {
+    "name": "Liakhovskyi Vladyslav",
+    "email": "vlad@rusted-labs.org",
+    "url": "https://github.com/rusted-love"
+  },
   "bugs": {
     "url": "https://github.com/RustedLabs/react-google-recaptcha-v3/issues"
   },
