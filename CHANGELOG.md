@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.3
+
+### Patch Changes
+
+- 7ff8e82: Improved documentation.
+
 ## 0.3.2
 
 ### Patch Changes
