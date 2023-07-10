@@ -1,33 +1,27 @@
 
 
-# @rusted/react-recaptcha-v3
-
-## Google reCaptcha v3 (Invisible) implementation for React based application
+# Google reCaptcha v3 (Invisible) implementation for React based application
 ![type definition](https://img.shields.io/npm/types/@rusted/react-recaptcha-v3)
 ![npm package](https://img.shields.io/npm/v/@rusted/react-recaptcha-v3/latest.svg)
 
 Please read the documentation about Google reCAPTCHA on their official website (https://developers.google.com/recaptcha/docs/v3) before installation.
 Obtain a `siteKey` (your reCaptcha token) before using this library.
-
-We have following strengths.
-- Rich control of reCaptcha script initialisation moment.
-- Clear versioning with help of [Changeset](https://github.com/changesets/changesets).
-- Highly tested code with [Typescript](https://github.com/microsoft/TypeScript) and [Jest](https://github.com/jestjs/jest).
-
-###  Important features included.
+Package name `@rusted/react-recaptcha-v3`.
+##  Key Features 🎯
 - **Prevent degrading PageSpeed Insights score** with power of `injectionDelay` property.
 -  **Lazy `siteKey` in case it is provided by back-end AP**I.
 - **Lazy load reCaptcha assets** for key points of your application. Function provided by `useSkipInjectionDelay` hook allows to ignore `injectionDelay`
-
-### How to install?
+- Clear versioning with help of [Changeset](https://github.com/changesets/changesets).
+- Highly tested code with [Typescript](https://github.com/microsoft/TypeScript) and [Jest](https://github.com/jestjs/jest).
+## How to install?
 - `yarn add @rusted/react-recaptcha-v3` for [Yarn](https://yarnpkg.com).
 - `pnpm add @rusted/react-recaptcha-v3'`  for [pnpm](https://pnpm.io)
 - `npm install @rusted/react-recaptcha-v3` for [npm](https://www.npmjs.com)
 
 
-### Components documentation
+## Components documentation
 
-##### ReCaptchaProvider
+### ReCaptchaProvider
 
 `@rusted/react-recaptcha-v3` provides a `ReCaptchaProvider` provider component that should be used to wrap around your components.
 
@@ -70,7 +64,7 @@ document.getElementById('app')
 
 
 
-#### React Hook: useGoogleReCaptcha
+### React Hook: useGoogleReCaptcha
 There is only one way to call Google reCaptcha. Hook `useExecuteReCaptcha`.
 
 The function returned by `useGoogleReCaptcha` returns promise with resolved reCaptcha token result. This token is used to validate protection score on your server-side and decide whether user is bot or not.  
@@ -105,7 +99,7 @@ ReactDOM.render(
 document.getElementById('app')  
 );  
 ```  
-#### useSkipInjectionDelay
+### useSkipInjectionDelay
 "I need my Google reCAPTCHA to be loaded now, regardless of the `injectionDelay` property. What should I do?"
 
 There is a way to ignore the `injectionDelay` and load reCAPTCHA assets immediately. The `useSkipInjectionDelay` hook returns a callback that accomplishes this. See the following usage example.
