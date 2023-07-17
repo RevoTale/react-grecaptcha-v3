@@ -94,8 +94,7 @@
     "url": "https://github.com/RustedLabs/react-google-recaptcha-v3/issues"
   },
   "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
-  "dependencies": {
-    "@bladl/react-hooks": "^1.5.2",
+  "peerDependencies": {
     "react": "^18.0",
     "react-dom": "^18.0"
   },
