@@ -1,5 +1,12 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.4
+
+### Patch Changes
+
+- 26d370c: Use peer dependencies for React.
+- da25f9a: Fix package to be compatible with older react versions.
+
 ## 0.3.3
 
 ### Patch Changes
