@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.7
+
+### Patch Changes
+
+- 5c589fd: Fix the ID-token permission to enable provenance
+
 ## 0.3.6
 
 ### Patch Changes
