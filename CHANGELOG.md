@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.5
+
+### Patch Changes
+
+- 51f96f3: Add provenance
+
 ## 0.3.4
 
 ### Patch Changes
