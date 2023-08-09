@@ -109,6 +109,7 @@
     "main": "lib/index.cjs",
     "types": "lib/index.d.ts",
     "access": "public",
+    "provenance": true,
     "exports": {
       ".": {
         "import": "./lib/index.js",
