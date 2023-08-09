@@ -1,5 +1,11 @@
 # @rusted/react-recaptcha-v3
 
+## 0.3.6
+
+### Patch Changes
+
+- 7634616: Fixed id-token permissions for CI release process
+
 ## 0.3.5
 
 ### Patch Changes
