@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.2
+
+### Patch Changes
+
+- 02b449a: Make consistent naming between npm and github.
+
 ## 0.4.1
 
 ### Patch Changes
