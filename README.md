@@ -14,6 +14,7 @@ Obtain a `siteKey` (your reCaptcha token) before using this library.
 - **Lazy load reCaptcha assets** for key points of your application. Function provided by `useSkipInjectionDelay` hook allows to ignore `injectionDelay`
 - Clear versioning with help of [Changeset](https://github.com/changesets/changesets).
 - Highly tested code with [Typescript](https://github.com/microsoft/TypeScript) and [Jest](https://github.com/jestjs/jest).
+- Confirmed [Provenance](https://www.npmjs.com/package/react-grecaptcha-v3#provenance) by npm. It guarantees transparency in library release process.
 
 ## How to install?
 
