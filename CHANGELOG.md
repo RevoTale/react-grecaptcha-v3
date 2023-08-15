@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.0
+
+### Minor Changes
+
+- 5ba0ac2: Breaking change! Package renamed from `@rusted/react-recaptcha-v3 to react-grecaptcha-v3.
+
 ## 0.3.8
 
 ### Patch Changes
