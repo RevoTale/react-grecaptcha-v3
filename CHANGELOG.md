@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.1
+
+### Patch Changes
+
+- a9754dc: Add npm provenance as a feature in readme.
+
 ## 0.4.0
 
 ### Minor Changes
