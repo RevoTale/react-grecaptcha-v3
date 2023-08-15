@@ -1,4 +1,4 @@
-# @rusted/react-recaptcha-v3
+# react-grecaptcha-v3
 
 ## 0.3.8
 

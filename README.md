@@ -1,11 +1,11 @@
 # Google reCaptcha v3 (Invisible) implementation for React based application
 
-![type definition](https://img.shields.io/npm/types/@rusted/react-recaptcha-v3)
-![npm package](https://img.shields.io/npm/v/@rusted/react-recaptcha-v3/latest.svg)
+![type definition](https://img.shields.io/npm/types/react-grecaptcha-v3)
+![npm package](https://img.shields.io/npm/v/react-grecaptcha-v3/latest.svg)
 
 Please read the documentation about Google reCAPTCHA on their [official website](https://developers.google.com/recaptcha/docs/v3) before installation.
 Obtain a `siteKey` (your reCaptcha token) before using this library.
-Package name `@rusted/react-recaptcha-v3`.
+Package name `react-grecaptcha-v3`.
 
 ## Key Features 🎯
 
@@ -17,15 +17,15 @@ Package name `@rusted/react-recaptcha-v3`.
 
 ## How to install?
 
-- `yarn add @rusted/react-recaptcha-v3` for [Yarn](https://yarnpkg.com).
-- `pnpm add @rusted/react-recaptcha-v3'`  for [pnpm](https://pnpm.io)
-- `npm install @rusted/react-recaptcha-v3` for [npm](https://www.npmjs.com)
+- `yarn add react-grecaptcha-v3` for [Yarn](https://yarnpkg.com).
+- `pnpm add react-grecaptcha-v3'`  for [pnpm](https://pnpm.io)
+- `npm install react-grecaptcha-v3` for [npm](https://www.npmjs.com)
 
 ## Components documentation
 
 ### ReCaptchaProvider
 
-`@rusted/react-recaptcha-v3` provides a `ReCaptchaProvider` provider component that should be used to wrap around your components.
+`react-grecaptcha-v3` provides a `ReCaptchaProvider` provider component that should be used to wrap around your components.
 
 `ReCaptchaProvider`'s responsibility is to load the necessary reCaptcha script and provide access to reCaptcha to the rest of your application.
 
@@ -72,7 +72,7 @@ Please note, in case your parent component tree not wrapped by `ReCaptchaProvide
 Use the hook as provided in the following example.
 
 ```javascript
-import { ReCaptchaProvider,useExecuteReCaptcha } from '@rusted/react-recaptcha-v3';
+import { ReCaptchaProvider,useExecuteReCaptcha } from 'react-grecaptcha-v3';
 
 const GoogleReCaptchaValidatorComponent = () => {
     const executeRecaptcha = useExecuteReCaptcha();
@@ -106,7 +106,7 @@ ReactDOM.render(
 There is a way to ignore the `injectionDelay` and load reCAPTCHA assets immediately. The `useSkipInjectionDelay` hook returns a callback that accomplishes this. See the following usage example.
 
 ```javascript
-import { ReCaptchaProvider,useExecuteReCaptcha } from '@rusted/react-recaptcha-v3';
+import { ReCaptchaProvider,useExecuteReCaptcha } from 'react-grecaptcha-v3';
 
 const GoogleReCaptchaValidatorComponent = () => {
     const forceRecaptchaLoad = useSkipInjectionDelay();
