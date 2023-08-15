@@ -1,11 +1,11 @@
-# Google reCaptcha v3 (Invisible) implementation for React based application
+# Google Invisible ReCaptcha components for React based application
+Keep website performance high while prioritizing security.
 
 ![type definition](https://img.shields.io/npm/types/react-grecaptcha-v3)
 ![npm package](https://img.shields.io/npm/v/react-grecaptcha-v3/latest.svg)
 
 Please read the documentation about Google reCAPTCHA on their [official website](https://developers.google.com/recaptcha/docs/v3) before installation.
 Obtain a `siteKey` (your reCaptcha token) before using this library.
-Package name `react-grecaptcha-v3`.
 
 ## Key Features 🎯
 
