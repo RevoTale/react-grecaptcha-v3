@@ -120,5 +120,5 @@
   },
   "type": "module",
   "packageManager": "pnpm@8.6.2",
-  "description": "Google Recaptcha V3 for React.js based application. Do not blow up your Page Insights score."
+  "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security."
 }
