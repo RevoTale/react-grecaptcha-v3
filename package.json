@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RustedLabs/react-google-recaptcha-v3.git"
+    "url": "git+https://github.com/RustedLabs/react-grecaptcha-v3.git"
   },
   "scripts": {
     "test": "jest --no-watchman && pnpm lint && pnpm types:check",
@@ -93,9 +93,9 @@
     "url": "https://github.com/rusted-love"
   },
   "bugs": {
-    "url": "https://github.com/RustedLabs/react-google-recaptcha-v3/issues"
+    "url": "https://github.com/RustedLabs/react-grecaptcha-v3/issues"
   },
-  "homepage": "https://github.com/RustedLabs/react-google-recaptcha-v3",
+  "homepage": "https://github.com/RustedLabs/react-grecaptcha-v3",
   "peerDependencies": {
     "react": ">=18.0",
     "react-dom": ">=18.0"
