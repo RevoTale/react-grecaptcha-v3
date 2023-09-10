@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.3
+
+### Patch Changes
+
+- e5d580f: Upgrade rimraf
+
 ## 0.4.2
 
 ### Patch Changes
