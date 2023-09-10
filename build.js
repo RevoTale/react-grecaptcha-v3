@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 const target = ['chrome64', 'edge79', 'firefox67', 'node16', 'safari11'];
 import glob from 'resolve-glob';
 
@@ -25,7 +25,7 @@ const shared = {
   sourcemap: true,
 };
 const handleBuild = async () => {
-  await rimraf(outDir);
+  rimrafSync(outDir);
 
   void build({
     ...shared,
