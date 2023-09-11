@@ -22,8 +22,6 @@
     "prettier": "prettier --cache --write --list-different .",
     "prettier:check": "prettier --cache --check .",
     "types:check": "tsc --noEmit",
-    "test-and-build": "yarn build && yarn test",
-    "prerelease": "yarn build",
     "prepublishOnly": "pnpm lint",
     "prepare": "pnpm build",
     "preversion": "pnpm lint",
