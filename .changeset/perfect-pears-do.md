@@ -1,5 +1,5 @@
 ---
-"react-grecaptcha-v3": patch
+'react-grecaptcha-v3': patch
 ---
 
 Upgrade rimraf

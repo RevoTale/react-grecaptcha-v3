@@ -1,5 +1,3 @@
 {
-  "paths": [
-    "./src/index.ts"
-  ]
+    "paths": ["./src/index.ts"]
 }

@@ -1,8 +1,8 @@
 {
-  "compilerOptions": {
-    "noEmit": true,
-    "jsx": "react-jsx",
-"lib": ["es6","esnext","dom"]
-  },
-  "include": ["./"]
+    "extends": ["../tsconfig.base.json"],
+    "compilerOptions": {
+        "noEmit": true,
+
+        "types": ["jest", "@grecaptcha"]
+    }
 }

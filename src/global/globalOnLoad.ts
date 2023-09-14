@@ -1,11 +1,11 @@
-import { queueKey } from './globals';
+import { queueKey } from './globals'
 const globalOnLoad = () => {
-  const callbacks = window[queueKey];
-  if (callbacks) {
-    let item;
-    while ((item = callbacks.shift())) {
-      item();
+    const callbacks = window[queueKey]
+    if (callbacks) {
+        let item
+        while ((item = callbacks.shift())) {
+            item()
+        }
     }
-  }
-};
-export default globalOnLoad;
+}
+export default globalOnLoad
