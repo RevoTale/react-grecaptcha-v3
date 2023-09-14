@@ -19,7 +19,7 @@ Obtain a `siteKey` (your reCaptcha token) before using this library.
 ## How to install?
 
 - `yarn add react-grecaptcha-v3` for [Yarn](https://yarnpkg.com).
-- `pnpm add react-grecaptcha-v3'`  for [pnpm](https://pnpm.io)
+- `pnpm add react-grecaptcha-v3`  for [pnpm](https://pnpm.io)
 - `npm install react-grecaptcha-v3` for [npm](https://www.npmjs.com)
 
 ## Components documentation
