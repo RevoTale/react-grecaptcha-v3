@@ -118,5 +118,9 @@
   },
   "type": "module",
   "packageManager": "pnpm@8.6.2",
-  "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security."
+  "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security.",
+  "dependencies": {
+    "eslint-config-grisaia-react": "^0.6.11",
+    "eslint-config-grisaia-typescript": "^0.6.11"
+  }
 }
