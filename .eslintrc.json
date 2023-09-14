@@ -8,7 +8,7 @@
     "docs/"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json","./__tests__/tsconfig.json"]
   },
   "extends": ["eslint-config-grisaia-react", "eslint-config-grisaia-typescript","prettier"],
   "plugins": [ "prettier"],

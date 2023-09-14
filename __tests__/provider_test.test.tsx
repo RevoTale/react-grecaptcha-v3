@@ -99,7 +99,7 @@ describe('<RecaptchaProvider />', () => {
     expect(scriptElm?.getAttribute('defer')).toEqual('');
   });
 
-  it('does not reload script if scriptProps object stays the same', async () => {
+  it('does not reload script if scriptProps object stays the same', () => {
     const { rerender } = render(
       <ReCaptchaProvider scriptProps={{ nonce: 'NONCE' }} siteKey="TESTKEY">
         <div />
@@ -118,7 +118,7 @@ describe('<RecaptchaProvider />', () => {
     expect(scriptElm).toBe(document.querySelector(scriptId));
   });
 
-  it('reloads script on scriptProps changes', async () => {
+  it('reloads script on scriptProps changes', () => {
     const { rerender } = render(
       <ReCaptchaProvider
         scriptProps={{ async: false, nonce: 'prev_nonce' }}
