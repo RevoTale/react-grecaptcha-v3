@@ -34,7 +34,7 @@ export const maybeInjectScript = ({
 }: InjectScriptProps): void => {
   let el = document.querySelector(`script[id=${scriptProps.id}]`);
   if (el === null) {
-    el = document.createElement('script') as HTMLScriptElement;
+    el = document.createElement('script');
   }
   Object.assign(el, scriptProps);
   (appendTo === 'head' ? document.head : document.body).appendChild(el);

@@ -14,7 +14,7 @@ const TestWrapper: FunctionComponent<{
 const TestDelayWrapper: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => (
-  <ReCaptchaProvider siteKey="TESTKEY" injectionDelay={500}>
+  <ReCaptchaProvider injectionDelay={500} siteKey="TESTKEY">
     {children}
   </ReCaptchaProvider>
 );

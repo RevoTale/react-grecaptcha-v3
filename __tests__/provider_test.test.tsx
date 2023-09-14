@@ -48,7 +48,7 @@ describe('<RecaptchaProvider />', () => {
 
   it('accept a injectionDelay prop to delay recaptcha load', done => {
     render(
-      <ReCaptchaProvider siteKey="TESTKEY" injectionDelay={500} useRecaptchaNet>
+      <ReCaptchaProvider injectionDelay={500} siteKey="TESTKEY" useRecaptchaNet>
         <div />
       </ReCaptchaProvider>
     );
@@ -71,7 +71,7 @@ describe('<RecaptchaProvider />', () => {
 
   it('puts a nonce to the script if provided', () => {
     render(
-      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider scriptProps={{ nonce: 'NONCE' }} siteKey="TESTKEY">
         <div />
       </ReCaptchaProvider>
     );
@@ -84,11 +84,11 @@ describe('<RecaptchaProvider />', () => {
   it('puts a defer to the script if provided', () => {
     render(
       <ReCaptchaProvider
-        siteKey="TESTKEY"
         scriptProps={{
           nonce: 'NONCE',
           defer: true,
         }}
+        siteKey="TESTKEY"
       >
         <div />
       </ReCaptchaProvider>
@@ -101,7 +101,7 @@ describe('<RecaptchaProvider />', () => {
 
   it('does not reload script if scriptProps object stays the same', async () => {
     const { rerender } = render(
-      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider scriptProps={{ nonce: 'NONCE' }} siteKey="TESTKEY">
         <div />
       </ReCaptchaProvider>
     );
@@ -110,7 +110,7 @@ describe('<RecaptchaProvider />', () => {
     expect(scriptElm).not.toBeNull();
 
     rerender(
-      <ReCaptchaProvider siteKey="TESTKEY" scriptProps={{ nonce: 'NONCE' }}>
+      <ReCaptchaProvider scriptProps={{ nonce: 'NONCE' }} siteKey="TESTKEY">
         <div />
       </ReCaptchaProvider>
     );
@@ -121,8 +121,8 @@ describe('<RecaptchaProvider />', () => {
   it('reloads script on scriptProps changes', async () => {
     const { rerender } = render(
       <ReCaptchaProvider
-        siteKey="TESTKEY"
         scriptProps={{ async: false, nonce: 'prev_nonce' }}
+        siteKey="TESTKEY"
       >
         <div />
       </ReCaptchaProvider>
@@ -134,8 +134,8 @@ describe('<RecaptchaProvider />', () => {
 
     rerender(
       <ReCaptchaProvider
-        siteKey="TESTKEY"
         scriptProps={{ async: true, nonce: 'second_nonce' }}
+        siteKey="TESTKEY"
       >
         <div />
       </ReCaptchaProvider>
@@ -155,7 +155,7 @@ describe('<RecaptchaProvider />', () => {
   describe('when using enterprise version', () => {
     it('accept an enterprise prop to load recaptcha from enterprise source', () => {
       render(
-        <ReCaptchaProvider siteKey="TESTKEY" enterprise>
+        <ReCaptchaProvider enterprise siteKey="TESTKEY">
           <div />
         </ReCaptchaProvider>
       );
@@ -169,7 +169,7 @@ describe('<RecaptchaProvider />', () => {
 
     it('should load recaptcha from recaptcha.net', () => {
       render(
-        <ReCaptchaProvider siteKey="TESTKEY" enterprise useRecaptchaNet>
+        <ReCaptchaProvider enterprise siteKey="TESTKEY" useRecaptchaNet>
           <div />
         </ReCaptchaProvider>
       );

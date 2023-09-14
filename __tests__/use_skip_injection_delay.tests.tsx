@@ -7,7 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 const TestWrapper: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => (
-  <ReCaptchaProvider siteKey="TESTKEY" injectionDelay={1000} useRecaptchaNet>
+  <ReCaptchaProvider injectionDelay={1000} siteKey="TESTKEY" useRecaptchaNet>
     {children}
   </ReCaptchaProvider>
 );
