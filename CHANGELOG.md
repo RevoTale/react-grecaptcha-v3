@@ -1,5 +1,16 @@
 # react-grecaptcha-v3
 
+## 0.4.3
+
+### Patch Changes
+
+-   055d4dd: Reduce complexity of build process. Gracefully reduce amount of dependenciec and package.json file size.
+-   1d90b20: Reduced .eslintrc config size
+-   055d4dd: Unnecesarry config removed.
+-   055d4dd: Reduce scripts amount. Be eloquent in this question.
+-   e5d580f: Upgrade rimraf
+-   2b42f69: Fixed typo in Readme
+
 ## 0.4.2
 
 ### Patch Changes
