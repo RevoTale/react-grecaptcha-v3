@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.4
+
+### Patch Changes
+
+-   a7cfae4: Make CI more semantic.
+
 ## 0.4.3
 
 ### Patch Changes
