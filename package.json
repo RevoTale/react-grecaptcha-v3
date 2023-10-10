@@ -7,7 +7,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RustedLabs/react-grecaptcha-v3.git"
+        "url": "git+https://github.com/RevoTale/react-grecaptcha-v3.git"
     },
     "scripts": {
         "test": "jest --no-watchman && tsc --noEmit && pnpm lint",
@@ -55,13 +55,13 @@
     ],
     "author": {
         "name": "Liakhovskyi Vladyslav",
-        "email": "vlad@rusted-labs.org",
+        "email": "vlad@revotale.com",
         "url": "https://github.com/rusted-love"
     },
     "bugs": {
-        "url": "https://github.com/RustedLabs/react-grecaptcha-v3/issues"
+        "url": "https://github.com/RevoTale/react-grecaptcha-v3/issues"
     },
-    "homepage": "https://github.com/RustedLabs/react-grecaptcha-v3",
+    "homepage": "https://github.com/RevoTale/react-grecaptcha-v3",
     "peerDependencies": {
         "react": ">=18.0",
         "react-dom": ">=18.0"
