@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.4.5
+
+### Patch Changes
+
+-   407a9c3: Update organization name
+
 ## 0.4.4
 
 ### Patch Changes
