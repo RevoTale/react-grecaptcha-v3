@@ -10,18 +10,18 @@ Obtain a `siteKey` (your reCaptcha token) before using this library.
 
 ## Key Features 🎯
 
--   **Prevent degrading PageSpeed Insights score** with power of `injectionDelay` property.
--   **Lazy `siteKey` in case it is provided by back-end AP**I.
--   **Lazy load reCaptcha assets** for key points of your application. Function provided by `useSkipInjectionDelay` hook allows to ignore `injectionDelay`
--   Clear versioning with help of [Changeset](https://github.com/changesets/changesets).
--   Highly tested code with [Typescript](https://github.com/microsoft/TypeScript) and [Jest](https://github.com/jestjs/jest).
--   Confirmed [Provenance](https://www.npmjs.com/package/react-grecaptcha-v3#provenance) by npm. It guarantees transparency in a library release process.
+- **Prevent degrading PageSpeed Insights score** with power of `injectionDelay` property.
+- **Lazy `siteKey` in case it is provided by back-end AP**I.
+- **Lazy load reCaptcha assets** for key points of your application. Function provided by `useSkipInjectionDelay` hook allows to ignore `injectionDelay`
+- Clear versioning with help of [Changeset](https://github.com/changesets/changesets).
+- Highly tested code with [Typescript](https://github.com/microsoft/TypeScript) and [Jest](https://github.com/jestjs/jest).
+- Confirmed [Provenance](https://www.npmjs.com/package/react-grecaptcha-v3#provenance) by npm. It guarantees transparency in a library release process.
 
 ## How to install?
 
--   `yarn add react-grecaptcha-v3` for [Yarn](https://yarnpkg.com).
--   `pnpm add react-grecaptcha-v3` for [pnpm](https://pnpm.io)
--   `npm install react-grecaptcha-v3` for [npm](https://www.npmjs.com)
+- `yarn add react-grecaptcha-v3` for [Yarn](https://yarnpkg.com).
+- `pnpm add react-grecaptcha-v3` for [pnpm](https://pnpm.io)
+- `npm install react-grecaptcha-v3` for [npm](https://www.npmjs.com)
 
 ## Components documentation
 
