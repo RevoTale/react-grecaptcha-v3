@@ -8,3 +8,4 @@ tsconfig.tsbuildinfo
 .parcel-cache
 .pnp.*
 .idea
+.pnpm-store
