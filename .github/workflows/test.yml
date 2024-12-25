@@ -24,9 +24,9 @@ jobs:
                     - node-version: 20
                       os: ubuntu-latest
         steps:
-            - uses: actions/checkout@4
-            - uses: pnpm/action-setup@3
-            - uses: actions/setup-node@4
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: pnpm
@@ -39,7 +39,7 @@ jobs:
         timeout-minutes: 5
         steps:
             - uses: actions/checkout@v4
-            - uses: pnpm/action-setup@3
+            - uses: pnpm/action-setup@v4
             - uses: actions/setup-node@v4
               with:
                   node-version: 18
