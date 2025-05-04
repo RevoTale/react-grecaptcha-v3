@@ -1,12 +1,11 @@
-import { MutableRefObject, useCallback } from 'react'
+import { type MutableRefObject, useCallback } from 'react'
 import subscribeEvent from './subscribeEvent'
-import { QueueItem } from './useQueueRef'
+import type { QueueItem } from './useQueueRef'
 
 const useHandleNextInQueue = (
     siteKey: string | null,
     queueRef: MutableRefObject<QueueItem[]>
-) => {
-    return useCallback(() => {
+) => useCallback(() => {
         if (!siteKey) {
             return
         }
@@ -32,5 +31,4 @@ const useHandleNextInQueue = (
             })
         }
     }, [queueRef, siteKey])
-}
 export default useHandleNextInQueue

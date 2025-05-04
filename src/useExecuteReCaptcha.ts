@@ -3,12 +3,8 @@ import makeContextError from './makeContextError'
 import { Context } from './ReCaptchaProvider'
 export type ExecuteRecaptcha = (action: string) => Promise<string>
 
-const useExecuteReCaptcha = (): ExecuteRecaptcha => {
-    return (
+const useExecuteReCaptcha = (): ExecuteRecaptcha => (
         useContext(Context)?.executeRecaptcha ??
-        (action => {
-            return Promise.reject(makeContextError(`${action} missed`))
-        })
+        (async action => await Promise.reject(makeContextError(`${action} missed`)))
     )
-}
 export default useExecuteReCaptcha

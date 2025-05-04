@@ -1,7 +1,7 @@
 import { key } from '../src/global/globals'
 import ReCaptchaProvider, {
     defaultScriptId,
-    ScriptProps,
+    type ScriptProps,
 } from '../src/ReCaptchaProvider'
 import { render, waitFor } from '@testing-library/react'
 const scriptId = `#${defaultScriptId}`
@@ -161,14 +161,14 @@ describe('<RecaptchaProvider />', () => {
             </ReCaptchaProvider>
         )
         expect(
-            (document.querySelector(scriptId) as HTMLScriptElement).nonce
+            (document.querySelector(scriptId)!).nonce
         ).toBe('second_nonce')
 
         expect(
-            (document.querySelector(scriptId) as HTMLScriptElement).async
+            (document.querySelector(scriptId)!).async
         ).toBe(true)
         expect(
-            (document.querySelector(scriptId) as HTMLScriptElement).defer
+            (document.querySelector(scriptId)!).defer
         ).toBe(true)
     })
 

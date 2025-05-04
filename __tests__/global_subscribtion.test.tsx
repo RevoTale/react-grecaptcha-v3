@@ -13,11 +13,9 @@ it('Test global subscription functions behaviour', () => {
         triggers.push('3')
     })
     window.grecaptcha = {
-        execute: () => {
-            return new Promise(resolve => {
+        execute: async () => await new Promise(resolve => {
                 resolve('now')
-            })
-        },
+            }),
         ready: callback => {
             callback()
         },

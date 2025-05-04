@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { useSkipInjectionDelay } from '../src'
 import { key } from '../src/global/globals'
 import ReCaptchaProvider, { defaultScriptId } from '../src/ReCaptchaProvider'

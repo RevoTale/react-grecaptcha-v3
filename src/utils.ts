@@ -41,7 +41,7 @@ export const maybeInjectScript = ({
 }
 export const maybeRemoveScript = (scriptId: string): void => {
     const el = document.querySelector(`script[id=${scriptId}]`)
-    if (null !== el) {
+    if (el !== null) {
         document.head.removeChild(el)
     }
 }
