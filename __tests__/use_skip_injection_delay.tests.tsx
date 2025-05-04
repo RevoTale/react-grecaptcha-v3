@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from 'react'
 import { useSkipInjectionDelay } from '../src'
 import { key } from '../src/global/globals'
 import ReCaptchaProvider, { defaultScriptId } from '../src/ReCaptchaProvider'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 const TestWrapper: FunctionComponent<{ children: ReactNode }> = ({
     children,

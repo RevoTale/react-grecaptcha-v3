@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from 'react'
 import ReCaptchaProvider from '../src/ReCaptchaProvider'
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import makeExecute from './utils/makeExecute'
 import simulateTokensOnLoad, {
     getStatSnapshot,
