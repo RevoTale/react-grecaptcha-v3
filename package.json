@@ -11,8 +11,8 @@
     },
     "scripts": {
         "test": "pnpm run unit && pnpm run tsc && pnpm run lint",
-        "unit":"jest --no-watchman",
-        "tsc":"tsc --noEmit",
+        "unit": "jest --no-watchman",
+        "tsc": "tsc --noEmit",
         "build": "gbuild . && tsc",
         "lint": "eslint && prettier --cache --check .",
         "fix": "eslint ./ --fix && prettier --cache --write --list-different .",
