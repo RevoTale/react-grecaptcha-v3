@@ -4,7 +4,7 @@ import love from 'eslint-config-love'
 
 export default defineConfig([
   { ...love,
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]
+    files: ["./src/**/*.{js,mjs,cjs,ts,jsx,tsx}"]
 
   },
 ]);
