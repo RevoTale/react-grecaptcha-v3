@@ -10,7 +10,9 @@
         "url": "git+https://github.com/RevoTale/react-grecaptcha-v3.git"
     },
     "scripts": {
-        "test": "jest --no-watchman && tsc --noEmit && pnpm lint",
+        "test": "pnpm run unit && pnpm run tsc && pnpm run lint",
+        "unit":"jest --no-watchman",
+        "tsc":"tsc --noEmit",
         "build": "gbuild . && tsc",
         "lint": "eslint && prettier --cache --check .",
         "fix": "eslint ./ --fix && prettier --cache --write --list-different .",

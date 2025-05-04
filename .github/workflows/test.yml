@@ -7,7 +7,7 @@ permissions:
     contents: read # to fetch code (actions/checkout)
 
 jobs:
-    Tests:
+    Unit:
         runs-on: ${{ matrix.os }}
         timeout-minutes: 15
         strategy:
@@ -37,7 +37,7 @@ jobs:
             - name: Install React ${{ matrix.react-version }}
               run: |
                   pnpm add -D react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} react-test-renderer@${{ matrix.react-version }}
-            - run: pnpm test
+            - run: pnpm unit
               env:
                   CI: true
     Lint:
@@ -48,6 +48,17 @@ jobs:
             - uses: pnpm/action-setup@v4
             - uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 20
                   cache: pnpm
             - run: 'pnpm i && pnpm lint'
+    Typecheck:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: pnpm
+            - run: 'pnpm i && pnpm tsc'
