@@ -15,22 +15,14 @@ jobs:
                 include:
                     - node-version: 16
                       os: ubuntu-latest
-                      react-version: 16
                     - node-version: 16
                       os: windows-latest
-                      react-version: 16
                     - node-version: 16
                       os: macOS-latest
-                      react-version: 16
                     - node-version: 18
                       os: ubuntu-latest
-                      react-version: 17
                     - node-version: 20
                       os: ubuntu-latest
-                      react-version: 18
-                    - node-version: 20
-                      os: ubuntu-latest
-                      react-version: 'latest'
         steps:
             - uses: actions/checkout@v4
             - uses: pnpm/action-setup@v4
@@ -38,12 +30,18 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: pnpm
-            - name: Install dependencies with specific React version
-              run: |
-                pnpm i
-                pnpm remove react react-dom
-                pnpm add react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} --save-peer
+            - run: pnpm i
             - run: pnpm test
               env:
                   CI: true
-    # ...existing code...
+    Lint:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: pnpm
+            - run: 'pnpm i && pnpm lint'
