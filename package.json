@@ -12,7 +12,7 @@
     "scripts": {
         "test": "jest --no-watchman && tsc --noEmit && pnpm lint",
         "build": "gbuild . && tsc",
-        "lint": "eslint ./ && prettier --cache --check .",
+        "lint": "eslint && prettier --cache --check .",
         "fix": "eslint ./ --fix && prettier --cache --write --list-different .",
         "prepare": "pnpm build",
         "changeset:version": "changeset version && git add --all",
