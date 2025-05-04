@@ -12,17 +12,19 @@ jobs:
         timeout-minutes: 15
         strategy:
             matrix:
-                include:
-                    - node-version: 18
-                      os: ubuntu-latest
-                    - node-version: 18
-                      os: windows-latest
-                    - node-version: 18
-                      os: macOS-latest
-                    - node-version: 20
-                      os: ubuntu-latest
-                    - node-version: 22
-                      os: ubuntu-latest
+                os: [ubuntu-latest, windows-latest, macOS-latest]
+                node-version: [18, 20, 22]
+                react-version: [18, 19]
+                exclude:
+                    # Reduce matrix size by excluding some combinations
+                    - os: windows-latest
+                      node-version: 20
+                    - os: windows-latest
+                      node-version: 22
+                    - os: macOS-latest
+                      node-version: 20
+                    - os: macOS-latest
+                      node-version: 22
         steps:
             - uses: actions/checkout@v4
             - uses: pnpm/action-setup@v4
@@ -31,6 +33,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: pnpm
             - run: pnpm i
+            # Install specific React version based on the matrix
+            - name: Install React ${{ matrix.react-version }}
+              run: |
+                pnpm add -D react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} react-test-renderer@${{ matrix.react-version }}
             - run: pnpm test
               env:
                   CI: true
