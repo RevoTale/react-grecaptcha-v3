@@ -5,7 +5,7 @@ import { Context } from './ReCaptchaProvider'
 const useSkipInjectionDelay = (): (() => null | Error) => {
     const context = useContext(Context)
     return () => {
-        const forceInjectScript = context?.injectScript.current??null
+        const forceInjectScript = context?.injectScript.current ?? null
         if (forceInjectScript !== null) {
             forceInjectScript()
             return null

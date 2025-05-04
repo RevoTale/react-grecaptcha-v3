@@ -9,12 +9,10 @@ declare interface GlobalRecaptchaExecuteProps {
     action: string
 }
 declare interface GlobalReCaptcha {
-     
     ready: (callback: () => void) => void
     execute?: (
-         
         siteKey: string,
-         
+
         props: GlobalRecaptchaExecuteProps
     ) => Promise<string>
 }

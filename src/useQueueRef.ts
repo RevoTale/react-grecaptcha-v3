@@ -5,6 +5,6 @@ export interface QueueItem {
     onComplete: (token: string) => void
     onError: (reason: Error) => void
 }
-const useQueueRef = ():RefObject<QueueItem[]> => useRef<QueueItem[]>([])
+const useQueueRef = (): RefObject<QueueItem[]> => useRef<QueueItem[]>([])
 
 export default useQueueRef

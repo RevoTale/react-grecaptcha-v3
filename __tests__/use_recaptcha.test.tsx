@@ -8,7 +8,9 @@ import simulateTokensOnLoad, {
 } from './utils/simulateTokensOnLoad'
 const TestWrapper: FunctionComponent<{
     children: ReactNode
-}> = ({ children }) => <ReCaptchaProvider siteKey="TESTKEY">{children}</ReCaptchaProvider>
+}> = ({ children }) => (
+    <ReCaptchaProvider siteKey="TESTKEY">{children}</ReCaptchaProvider>
+)
 const TestDelayWrapper: FunctionComponent<{ children: ReactNode }> = ({
     children,
 }) => (

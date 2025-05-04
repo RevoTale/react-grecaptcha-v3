@@ -15,7 +15,8 @@ it('Test global subscription functions behaviour', () => {
     })
     window.grecaptcha = {
         // eslint-disable-next-line promise/avoid-new -- for tests
-        execute: async () => await new Promise(resolve => {
+        execute: async () =>
+            await new Promise(resolve => {
                 resolve('now')
             }),
         ready: callback => {

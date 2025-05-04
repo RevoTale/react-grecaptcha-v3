@@ -54,11 +54,11 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
         }
     }, [handleNextInQueue])
     useEffect(() => {
-        const reCaptchaScriptId = scriptProps.id ??defaultScriptId
+        const reCaptchaScriptId = scriptProps.id ?? defaultScriptId
         if (siteKey === null) {
             maybeRemoveScript(reCaptchaScriptId)
         } else {
-            const inject = ():void => {
+            const inject = (): void => {
                 maybeInjectScript({
                     src: getScriptSrc({
                         enterprise,
@@ -101,8 +101,9 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
     ])
 
     const executeRecaptcha: ExecuteRecaptcha = useCallback(
-        // eslint-disable-next-line promise/avoid-new -- no time to fix 
-        async (action: string): Promise<string> => await new Promise((resolve, reject) => {
+        // eslint-disable-next-line promise/avoid-new -- no time to fix
+        async (action: string): Promise<string> =>
+            await new Promise((resolve, reject) => {
                 queueRef.current.push({
                     action,
                     onComplete: resolve,

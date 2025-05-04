@@ -160,16 +160,10 @@ describe('<RecaptchaProvider />', () => {
                 <div />
             </ReCaptchaProvider>
         )
-        expect(
-            (document.querySelector(scriptId)!).nonce
-        ).toBe('second_nonce')
+        expect(document.querySelector(scriptId)!.nonce).toBe('second_nonce')
 
-        expect(
-            (document.querySelector(scriptId)!).async
-        ).toBe(true)
-        expect(
-            (document.querySelector(scriptId)!).defer
-        ).toBe(true)
+        expect(document.querySelector(scriptId)!.async).toBe(true)
+        expect(document.querySelector(scriptId)!.defer).toBe(true)
     })
 
     describe('when using enterprise version', () => {
