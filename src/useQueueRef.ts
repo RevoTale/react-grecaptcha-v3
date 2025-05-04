@@ -1,12 +1,10 @@
-import { useRef } from 'react'
+import { type RefObject, useRef } from 'react'
 
-export type QueueItem = {
+export interface QueueItem {
     action: string
     onComplete: (token: string) => void
     onError: (reason: Error) => void
 }
-const useQueueRef = () => {
-    return useRef<QueueItem[]>([])
-}
+const useQueueRef = (): RefObject<QueueItem[]> => useRef<QueueItem[]>([])
 
 export default useQueueRef

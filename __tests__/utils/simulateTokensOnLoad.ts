@@ -1,5 +1,5 @@
 import { key } from '../../src/global/globals'
-type GlobalStats = {
+interface GlobalStats {
     actions: string[]
     tokens: string[]
 }
@@ -11,12 +11,12 @@ declare global {
 
 const globalStatsKey = 'grecaptcha_stats' as const
 
-const recaptchaExecuteFixture = (
+const recaptchaExecuteFixture = async (
     siteKey: string,
     { action }: { action: string }
 ) => {
     window[globalStatsKey].actions.push(action)
-    return new Promise<string>(resolve => {
+    return await new Promise<string>(resolve => {
         const resolveResult = () => {
             const token = `fixture_token_228_${action}__${siteKey}`
             window[globalStatsKey].tokens.push(token)
@@ -43,7 +43,7 @@ export const getStatSnapshot = (): GlobalStats => {
     }
 }
 const simulateTokensOnLoad = (
-    promises: () => Promise<string>[]
+    promises: () => Array<Promise<string>>
 ): { promise: Promise<string[]>; stats: GlobalStats } => {
     const loadScript = () => {
         window.grecaptcha = {

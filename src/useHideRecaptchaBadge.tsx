@@ -4,7 +4,7 @@ export const reCaptchaHiddenBadgeStyles = `.grecaptcha-badge { visibility: hidde
  * Please read https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
  * before doing this.
  */
-const useHideRecaptchaBadge = () => {
+const useHideRecaptchaBadge = (): void => {
     useEffect(() => {
         const styles = document.createElement('style')
         styles.textContent = reCaptchaHiddenBadgeStyles

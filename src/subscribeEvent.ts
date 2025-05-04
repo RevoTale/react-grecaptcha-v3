@@ -1,13 +1,13 @@
 import globalOnLoad from './global/globalOnLoad'
 import { key, queueKey } from './global/globals'
 
-const subscribeEvent = (callback: () => void) => {
-    if (window.grecaptcha?.execute) {
+const subscribeEvent = (callback: () => void): void => {
+    if (window.grecaptcha?.execute !== undefined) {
         callback()
         return
     }
     window[key] = globalOnLoad
-    if (window[queueKey]) {
+    if (window[queueKey] !== undefined) {
         window[queueKey].push(callback)
     } else {
         window[queueKey] = [callback]

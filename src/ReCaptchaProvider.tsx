@@ -1,8 +1,8 @@
 import {
     createContext,
-    FunctionComponent,
-    ReactNode,
-    RefObject,
+    type FunctionComponent,
+    type ReactNode,
+    type RefObject,
     useCallback,
     useEffect,
     useMemo,
@@ -10,17 +10,17 @@ import {
 } from 'react'
 import subscribeEvent from './subscribeEvent'
 import unsubscribeEvent from './unsubscribeEvent'
-import { ExecuteRecaptcha } from './useExecuteReCaptcha'
+import type { ExecuteRecaptcha } from './useExecuteReCaptcha'
 import useHandleNextInQueue from './useHandleNextInQueue'
 import useQueueRef from './useQueueRef'
 import { getScriptSrc, maybeInjectScript, maybeRemoveScript } from './utils'
 
-type ContextType = {
+interface ContextType {
     executeRecaptcha: ExecuteRecaptcha
     injectScript: RefObject<null | (() => void)>
 }
 export const Context = createContext<ContextType | null>(null)
-export type ScriptProps = {
+export interface ScriptProps {
     nonce?: string
     defer?: boolean
     async?: boolean
@@ -54,11 +54,11 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
         }
     }, [handleNextInQueue])
     useEffect(() => {
-        const reCaptchaScriptId = scriptProps.id || defaultScriptId
-        if (null === siteKey) {
+        const reCaptchaScriptId = scriptProps.id ?? defaultScriptId
+        if (siteKey === null) {
             maybeRemoveScript(reCaptchaScriptId)
         } else {
-            const inject = () => {
+            const inject = (): void => {
                 maybeInjectScript({
                     src: getScriptSrc({
                         enterprise,
@@ -101,16 +101,16 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
     ])
 
     const executeRecaptcha: ExecuteRecaptcha = useCallback(
-        async (action: string): Promise<string> => {
-            return new Promise((resolve, reject) => {
+        async (action: string): Promise<string> =>
+            // eslint-disable-next-line promise/avoid-new -- no time to fix
+            await new Promise((resolve, reject) => {
                 queueRef.current.push({
                     action,
                     onComplete: resolve,
                     onError: reject,
                 })
                 handleNextInQueue()
-            })
-        },
+            }),
         [handleNextInQueue, queueRef]
     )
     const contextValue = useMemo(

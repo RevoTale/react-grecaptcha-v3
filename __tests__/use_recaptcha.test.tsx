@@ -1,16 +1,16 @@
-import { FunctionComponent, ReactNode } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import ReCaptchaProvider from '../src/ReCaptchaProvider'
 import useExecuteReCaptcha from '../src/useExecuteReCaptcha'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import makeExecute from './utils/makeExecute'
 import simulateTokensOnLoad, {
     getStatSnapshot,
 } from './utils/simulateTokensOnLoad'
 const TestWrapper: FunctionComponent<{
     children: ReactNode
-}> = ({ children }) => {
-    return <ReCaptchaProvider siteKey="TESTKEY">{children}</ReCaptchaProvider>
-}
+}> = ({ children }) => (
+    <ReCaptchaProvider siteKey="TESTKEY">{children}</ReCaptchaProvider>
+)
 const TestDelayWrapper: FunctionComponent<{ children: ReactNode }> = ({
     children,
 }) => (
@@ -45,7 +45,7 @@ describe('useExecuteReCaptcha hook', () => {
         const { promise } = simulateTokensOnLoad(() => {
             const actionCall = makeExecute(TestDelayWrapper)
 
-            const promises: Promise<string>[] = []
+            const promises: Array<Promise<string>> = []
             for (let i = 0; i < 4; i++) {
                 promises.push(actionCall(`some_action_${i}`))
                 expectedResult.push(
