@@ -1,5 +1,14 @@
 # react-grecaptcha-v3
 
+## 0.5.0
+
+### Minor Changes
+
+- d50e5df: Add React 19 CI tests
+- d50e5df: Add test cases for React 19. Drop Node.js 16 support
+- d50e5df: Fix codebase according to eslint-config-love rules
+- d50e5df: Minor improvement (dependecies, upgrade, code quality)
+
 ## 0.4.5
 
 ### Patch Changes
