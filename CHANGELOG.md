@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.6.2
+
+### Patch Changes
+
+- 34e4663: Fix missig component in release
+
 ## 0.6.1
 
 ### Patch Changes
