@@ -13,7 +13,7 @@
         "test": "pnpm run unit && pnpm run tsc && pnpm run lint",
         "unit": "jest --no-watchman",
         "tsc": "tsc --noEmit",
-        "build": "tsup",
+        "build": "tsup && cp package.json README.md LICENSE dist/",
         "lint": "eslint && prettier --cache --check .",
         "fix": "eslint ./ --fix && prettier --cache --write --list-different .",
         "prepare": "pnpm build",
