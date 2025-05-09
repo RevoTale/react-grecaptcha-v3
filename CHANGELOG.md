@@ -1,5 +1,18 @@
 # react-grecaptcha-v3
 
+## 0.6.0
+
+### Minor Changes
+
+- 56e257a: Add React 19 CI tests
+- 56e257a: Add test cases for React 19. Drop Node.js 16 support
+- 56e257a: Fix codebase according to eslint-config-love rules
+- 56e257a: Minor improvement (dependecies, upgrade, code quality)
+
+### Patch Changes
+
+- 56e257a: Change builder to tsup
+
 ## 0.5.0
 
 ### Minor Changes
