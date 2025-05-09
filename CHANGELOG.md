@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.6.1
+
+### Patch Changes
+
+- 5b67cce: Fix release process
+
 ## 0.6.0
 
 ### Minor Changes
