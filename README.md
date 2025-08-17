@@ -1,4 +1,5 @@
 # Google Invisible ReCaptcha components for React based application
+<img width="1536" height="1024" alt="grecaptcha" src="https://github.com/user-attachments/assets/a38d3543-3f7f-4ca1-8444-ba5b4173368f" />
 
 Keep website performance high while prioritizing security.
 
