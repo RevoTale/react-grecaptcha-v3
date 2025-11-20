@@ -22,9 +22,8 @@ const useHandleNextInQueue = (
         if (siteKey === null) {
             return
         }
-        let item: QueueItem | undefined = undefined
         do {
-            item = queueRef.current.shift()
+           const item = queueRef.current.shift()
             if (item === undefined) {
                 break
             }
