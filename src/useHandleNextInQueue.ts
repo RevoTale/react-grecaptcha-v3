@@ -23,7 +23,7 @@ const useHandleNextInQueue = (
             return
         }
         do {
-           const item = queueRef.current.shift()
+            const item = queueRef.current.shift()
             if (item === undefined) {
                 break
             }
