@@ -1,5 +1,11 @@
 # react-grecaptcha-v3
 
+## 0.7.0
+
+### Minor Changes
+
+- a334704: Bump packages. NExtJS 16 support
+
 ## 0.6.2
 
 ### Patch Changes
