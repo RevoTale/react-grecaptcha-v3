@@ -90,6 +90,6 @@
         }
     },
     "type": "module",
-    "packageManager": "pnpm@10.26.2",
+    "packageManager": "pnpm@10.28.2",
     "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security."
 }
