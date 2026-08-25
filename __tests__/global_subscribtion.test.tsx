@@ -1,5 +1,6 @@
 import globalOnLoad from '../src/global/globalOnLoad'
 import subscribeEvent from '../src/subscribeEvent'
+
 const triggerCountMiddle = 3
 const triggerCountLast = 5
 it('Test global subscription functions behaviour', () => {

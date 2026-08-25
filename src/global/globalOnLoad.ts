@@ -1,4 +1,5 @@
 import { queueKey } from './globals'
+
 const globalOnLoad = (): void => {
     const { [queueKey]: callbacks } = window
     if (callbacks !== undefined) {

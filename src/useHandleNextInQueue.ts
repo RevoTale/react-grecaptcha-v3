@@ -1,6 +1,7 @@
 import { type RefObject, useCallback } from 'react'
 import subscribeEvent from './subscribeEvent'
 import type { QueueItem } from './useQueueRef'
+
 const unknownToError = (
     err: unknown,
     fallbackMsg = 'Unexpected error'
@@ -22,11 +23,7 @@ const useHandleNextInQueue = (
         if (siteKey === null) {
             return
         }
-        do {
-            const item = queueRef.current.shift()
-            if (item === undefined) {
-                break
-            }
+        for (const item of queueRef.current.splice(0)) {
             const { action, onComplete, onError } = item
 
             subscribeEvent(() => {
@@ -41,6 +38,6 @@ const useHandleNextInQueue = (
                 }
                 onError(new Error('Bad execute().'))
             })
-        } while (true)
+        }
     }, [queueRef, siteKey])
 export default useHandleNextInQueue
