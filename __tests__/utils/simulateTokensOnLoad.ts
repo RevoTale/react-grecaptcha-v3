@@ -1,4 +1,5 @@
 import { key } from '../../src/global/globals'
+
 interface GlobalStats {
     actions: string[]
     tokens: string[]
@@ -43,7 +44,7 @@ export const getStatSnapshot = (): GlobalStats => {
     }
 }
 const simulateTokensOnLoad = (
-    promises: () => Array<Promise<string>>
+    promises: () => Promise<string>[]
 ): { promise: Promise<string[]>; stats: GlobalStats } => {
     const loadScript = () => {
         window.grecaptcha = {

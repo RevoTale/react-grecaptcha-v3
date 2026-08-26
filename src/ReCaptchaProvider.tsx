@@ -90,7 +90,6 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
         }
     }, [
         enterprise,
-        handleNextInQueue,
         injectionDelay,
         scriptProps.appendTo,
         scriptProps.async,
@@ -103,7 +102,6 @@ const ReCaptchaProvider: FunctionComponent<Props> = ({
 
     const executeRecaptcha: ExecuteRecaptcha = useCallback(
         async (action: string): Promise<string> =>
-            // eslint-disable-next-line promise/avoid-new -- no time to fix
             await new Promise((resolve, reject) => {
                 queueRef.current.push({
                     action,

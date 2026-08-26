@@ -1,14 +1,15 @@
+import { render, waitFor } from '@testing-library/react'
 import { key } from '../src/global/globals'
 import ReCaptchaProvider, {
     defaultScriptId,
     type ScriptProps,
 } from '../src/ReCaptchaProvider'
-import { render, waitFor } from '@testing-library/react'
+
 const scriptId = `#${defaultScriptId}`
 describe('<RecaptchaProvider />', () => {
     it('inject google recaptcha script to the document', () => {
         render(
-            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet={true}>
                 <div />
             </ReCaptchaProvider>
         )
@@ -19,7 +20,7 @@ describe('<RecaptchaProvider />', () => {
 
     it('remove google recaptcha script from the document when being unmounted', async () => {
         const { unmount } = render(
-            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet={true}>
                 <div />
             </ReCaptchaProvider>
         )
@@ -37,7 +38,7 @@ describe('<RecaptchaProvider />', () => {
 
     it('accept a useRecaptchaNet prop to load recaptcha from recaptcha.net', () => {
         render(
-            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet>
+            <ReCaptchaProvider siteKey="TESTKEY" useRecaptchaNet={true}>
                 <div />
             </ReCaptchaProvider>
         )
@@ -54,7 +55,7 @@ describe('<RecaptchaProvider />', () => {
             <ReCaptchaProvider
                 injectionDelay={500}
                 siteKey="TESTKEY"
-                useRecaptchaNet
+                useRecaptchaNet={true}
             >
                 <div />
             </ReCaptchaProvider>
@@ -160,16 +161,16 @@ describe('<RecaptchaProvider />', () => {
                 <div />
             </ReCaptchaProvider>
         )
-        expect(document.querySelector(scriptId)!.nonce).toBe('second_nonce')
+        expect(document.querySelector(scriptId)?.nonce).toBe('second_nonce')
 
-        expect(document.querySelector(scriptId)!.async).toBe(true)
-        expect(document.querySelector(scriptId)!.defer).toBe(true)
+        expect(document.querySelector(scriptId)?.async).toBe(true)
+        expect(document.querySelector(scriptId)?.defer).toBe(true)
     })
 
     describe('when using enterprise version', () => {
         it('accept an enterprise prop to load recaptcha from enterprise source', () => {
             render(
-                <ReCaptchaProvider enterprise siteKey="TESTKEY">
+                <ReCaptchaProvider enterprise={true} siteKey="TESTKEY">
                     <div />
                 </ReCaptchaProvider>
             )
@@ -183,7 +184,11 @@ describe('<RecaptchaProvider />', () => {
 
         it('should load recaptcha from recaptcha.net', () => {
             render(
-                <ReCaptchaProvider enterprise siteKey="TESTKEY" useRecaptchaNet>
+                <ReCaptchaProvider
+                    enterprise={true}
+                    siteKey="TESTKEY"
+                    useRecaptchaNet={true}
+                >
                     <div />
                 </ReCaptchaProvider>
             )
