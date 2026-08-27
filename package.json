@@ -27,7 +27,7 @@
         "@swc/jest": "0.2.39",
         "@testing-library/react": "16.3.2",
         "@types/jest": "30.0.0",
-        "@types/react": "^19.2.18",
+        "@types/react": "19.2.18",
         "jest": "30.4.2",
         "jest-docblock": "30.4.0",
         "jest-environment-jsdom": "30.4.1",

@@ -27,7 +27,7 @@ importers:
         specifier: 30.0.0
         version: 30.0.0
       '@types/react':
-        specifier: ^19.2.18
+        specifier: 19.2.18
         version: 19.2.18
       jest:
         specifier: 30.4.2
