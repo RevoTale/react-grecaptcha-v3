@@ -12,8 +12,8 @@
     "scripts": {
         "test": "pnpm run unit && pnpm run tsc && pnpm run lint",
         "unit": "jest --no-watchman",
-        "tsc": "./node_modules/@typescript/native/bin/tsc --noEmit",
-        "build": "tsup --tsconfig tsconfig.tsup.json && cp package.json README.md LICENSE dist/",
+        "tsc": "tsc --noEmit",
+        "build": "tsdown && cp package.json README.md LICENSE dist/",
         "lint": "biome check .",
         "fix": "biome check --write --unsafe .",
         "prepare": "pnpm build",
@@ -21,24 +21,22 @@
         "changeset:publish": "changeset publish"
     },
     "devDependencies": {
-        "@changesets/cli": "^3.0.0",
         "@biomejs/biome": "2.5.10",
-        "@swc/core": "^1.11.24",
-        "@testing-library/react": "^16.3.0",
+        "@changesets/cli": "^3.0.1",
+        "@swc/core": "^1.16.1",
+        "@swc/jest": "^0.2.39",
+        "@testing-library/react": "^16.3.2",
         "@types/jest": "^30.0.0",
-        "@types/react": "^19.1.2",
-        "@typescript/native": "npm:typescript@^7.0.2",
-        "jest": "^30.0.0",
-        "jest-docblock": "^30.0.0",
-        "jest-environment-jsdom": "^30.0.0",
+        "@types/react": "^19.2.18",
+        "jest": "^30.4.2",
+        "jest-docblock": "^30.4.0",
+        "jest-environment-jsdom": "^30.4.1",
         "jest-junit": "^17.0.0",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
-        "react-test-renderer": "^19.1.0",
-        "ts-jest": "^29.3.2",
-        "ts-node": "^10.9.2",
-        "tsup": "^8.4.0",
-        "typescript": "npm:@typescript/typescript6@^6.0.2"
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "react-test-renderer": "^19.2.8",
+        "tsdown": "^0.22.14",
+        "typescript": "7.0.2"
     },
     "keywords": [
         "react",
@@ -81,6 +79,6 @@
         }
     },
     "type": "module",
-    "packageManager": "pnpm@11.22.0",
+    "packageManager": "pnpm@11.23.0",
     "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security."
 }
