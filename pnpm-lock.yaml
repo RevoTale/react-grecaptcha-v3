@@ -12,46 +12,46 @@ importers:
         specifier: 2.5.10
         version: 2.5.10
       '@changesets/cli':
-        specifier: ^3.0.1
+        specifier: 3.0.1
         version: 3.0.1
       '@swc/core':
-        specifier: ^1.16.1
+        specifier: 1.16.1
         version: 1.16.1
       '@swc/jest':
-        specifier: ^0.2.39
+        specifier: 0.2.39
         version: 0.2.39(@swc/core@1.16.1)
       '@testing-library/react':
-        specifier: ^16.3.2
+        specifier: 16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@types/jest':
-        specifier: ^30.0.0
+        specifier: 30.0.0
         version: 30.0.0
       '@types/react':
         specifier: ^19.2.18
         version: 19.2.18
       jest:
-        specifier: ^30.4.2
+        specifier: 30.4.2
         version: 30.4.2(@types/node@26.3.0)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.1)(@types/node@26.3.0)(typescript@7.0.2))
       jest-docblock:
-        specifier: ^30.4.0
+        specifier: 30.4.0
         version: 30.4.0
       jest-environment-jsdom:
-        specifier: ^30.4.1
+        specifier: 30.4.1
         version: 30.4.1(supports-color@8.1.1)
       jest-junit:
-        specifier: ^17.0.0
+        specifier: 17.0.0
         version: 17.0.0
       react:
-        specifier: ^19.2.8
+        specifier: 19.2.8
         version: 19.2.8
       react-dom:
-        specifier: ^19.2.8
+        specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
       react-test-renderer:
-        specifier: ^19.2.8
+        specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
       tsdown:
-        specifier: ^0.22.14
+        specifier: 0.22.14
         version: 0.22.14(typescript@7.0.2)
       typescript:
         specifier: 7.0.2
