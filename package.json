@@ -21,16 +21,16 @@
         "changeset:publish": "changeset publish"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.5.10",
+        "@biomejs/biome": "2.5.11",
         "@changesets/cli": "3.0.1",
         "@swc/core": "1.16.1",
         "@swc/jest": "0.2.39",
-        "@testing-library/react": "16.3.2",
+        "@testing-library/react": "16.3.3",
         "@types/jest": "30.0.0",
         "@types/react": "19.2.18",
-        "jest": "30.4.2",
-        "jest-docblock": "30.4.0",
-        "jest-environment-jsdom": "30.4.1",
+        "jest": "30.5.0",
+        "jest-docblock": "30.5.0",
+        "jest-environment-jsdom": "30.5.0",
         "jest-junit": "17.0.0",
         "react": "19.2.8",
         "react-dom": "19.2.8",
@@ -79,6 +79,6 @@
         }
     },
     "type": "module",
-    "packageManager": "pnpm@11.24.0",
+    "packageManager": "pnpm@11.25.0",
     "description": "Google Recaptcha V3 for React.js based application. Keep website performance high while prioritizing security."
 }
