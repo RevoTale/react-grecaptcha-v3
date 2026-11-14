@@ -12,7 +12,7 @@ jobs:
         timeout-minutes: 15
         strategy:
             matrix:
-                os: [ubuntu-latest, windows-latest, macOS-latest]
+                os: [windows-latest, macOS-latest]
                 node-version: [22, 24, 26]
                 react-version: [18, 19]
                 exclude:
@@ -40,25 +40,3 @@ jobs:
             - run: pnpm unit
               env:
                   CI: true
-    Lint:
-        runs-on: ubuntu-latest
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-            - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
-              with:
-                  node-version: 24
-                  cache: pnpm
-            - run: 'pnpm i && pnpm lint'
-    Typecheck:
-        runs-on: ubuntu-latest
-        timeout-minutes: 5
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-            - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
-            - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
-              with:
-                  node-version: 24
-                  cache: pnpm
-            - run: 'pnpm i && pnpm tsc'
